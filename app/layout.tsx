@@ -24,7 +24,12 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} antialiased transition-colors duration-300`}
       >
-        <ThemeProvider>
+        {/* Added properties to force dark mode immediately without flashes */}
+        <ThemeProvider 
+          attribute="class" 
+          defaultTheme="dark" 
+          enableSystem={false}
+        >
           {children}
         </ThemeProvider>
       </body>

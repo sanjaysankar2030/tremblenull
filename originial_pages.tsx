@@ -1,15 +1,18 @@
 "use client";
 
-import Image from "next/image"; //  Correctimport { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react"; import { FaXTwitter } from "react-icons/fa6";
+import Image from "next/image";
+import { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import { ExperienceItem } from "./components/ExperienceItem";
 import { GithubGraph } from "./components/GithubGraph";
 import { TechStack } from "./components/TechStack";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useTheme } from "next-themes";
 import { QRCodeSVG } from "qrcode.react";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
+
+
 
 import { getMarkdownContent } from "./data/content";
 
@@ -19,12 +22,10 @@ const DiscordIcon = (props: React.SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
-
 export default function Home() {
   const [time, setTime] = useState<string>("");
   const [showQR, setShowQR] = useState(false);
   const [mode, setMode] = useState<"human" | "agent">("human");
-  const [libraryExpanded, setLibraryExpanded] = useState(false);
 
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -44,73 +45,40 @@ export default function Home() {
 
     updateTime();
     const timer = setInterval(updateTime, 1000);
+
     return () => clearInterval(timer);
   }, []);
 
   const markdownContent = getMarkdownContent(time);
-  const [command, setCommand] = useState("javac");
 
-useEffect(() => {
-  const commands = ["javac", "tcc", "python3", "go run"];
-  let currentIndex = 0;
+  const [libraryExpanded, setLibraryExpanded] = useState(false);
 
-  const interval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % commands.length;
-    setCommand(commands[currentIndex]);
-  }, 2500); // Cycles every 2.5 seconds
 
-  return () => clearInterval(interval);
-}, []);
-  // Smooth scroll helper
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
 
   return (
-<div className="relative flex min-h-screen flex-col items-center bg-background text-foreground px-3 pt-16 selection:bg-foreground dark:selection:bg-background selection:text-background dark:selection:text-foreground pb-32 sm:px-4 sm:pt-24 sm:pb-40 overflow-x-hidden transition-colors duration-300">  {/* Dynamic Floating Navbar */}
-  {mode === "human" && (
-<div className="fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-foreground/20 bg-background/90 px-3 py-2 backdrop-blur-md sm:flex shadow-sm">          {[
-            { label: "Intro", id: "intro" },
-            { label: "About", id: "about" },
-            { label: "Experience", id: "experience" },
-            { label: "Contact", id: "contact" }
-          ].map((nav) => (
-            <a
-              key={nav.id}
-              href={`#${nav.id}`}
-              onClick={(e) => handleScroll(e, nav.id)}
-              className="rounded-full px-3 py-1 text-xs font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-black dark:text-gray-400 dark:hover:bg-zinc-800 dark:hover:text-white"
-            >
-              {nav.label}
-            </a>
-          ))}
-        </div>
-      )}
+    
+    <div className={`relative flex min-h-screen flex-col items-center bg-white dark:bg-black px-3 pt-16 text-black dark:text-white selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black pb-32 sm:px-4 sm:pt-24 sm:pb-40 overflow-x-hidden transition-colors duration-300`}>
 
-      {/* Mode & Theme Toggles Container */}
-      <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
-        <button
-          onClick={() => setMode(mode === "human" ? "agent" : "human")}
-          className="group relative flex h-7 w-12 cursor-pointer rounded-full bg-gray-200 dark:bg-zinc-700 p-1 transition-colors duration-200 ease-in-out hover:bg-gray-300 dark:hover:bg-zinc-600 focus:outline-none"
-          role="switch"
-          aria-checked={mode === "agent"}
-          title={`Switch to ${mode === "human" ? "agent" : "human"} mode`}
-        >
-          <div
-            className={`flex h-5 w-5 transform items-center justify-center rounded-full bg-white shadow-sm transition duration-200 ease-in-out ${mode === "agent" ? "translate-x-5" : "translate-x-0"
-              }`}
+      {/* Theme Toggle in Top Right */}
+      <div className="fixed top-6 right-6 z-50">
+         <button
+            onClick={() => setMode(mode === "human" ? "agent" : "human")}
+            className="group relative flex h-7 w-12 cursor-pointer rounded-full bg-gray-200 dark:bg-zinc-700 p-1 transition-colors duration-200 ease-in-out hover:bg-gray-300 dark:hover:bg-zinc-600 focus:outline-none"
+            role="switch"
+            aria-checked={mode === "agent"}
+            title={`Switch to ${mode === "human" ? "agent" : "human"} mode`}
           >
-            {mode === "human" ? (
-              <User className="h-3 w-3 text-black" />
-            ) : (
-              <Bot className="h-3 w-3 text-black" />
-            )}
-          </div>
-        </button>
+            <div
+              className={`flex h-5 w-5 transform items-center justify-center rounded-full bg-white dark:bg-white shadow-sm transition duration-200 ease-in-out ${mode === "agent" ? "translate-x-5" : "translate-x-0"
+                }`}
+            >
+              {mode === "human" ? (
+                <User className="h-3 w-3 text-black" />
+              ) : (
+                <Bot className="h-3 w-3 text-black" />
+              )}
+            </div>
+          </button>
       </div>
 
       <AnimatePresence mode="wait">
@@ -139,85 +107,41 @@ useEffect(() => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex w-full max-w-2xl flex-col items-center text-center pt-8 sm:pt-4"
+            className="flex w-full max-w-2xl flex-col items-center text-center"
           >
- {/* Container isolating just the image and text layout */}
-<div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-16">
-  
-  {/* Profile Image Asset */}
-  <div className="relative h-44 w-120 sm:h-56 sm:w-56 md:h-64 md:w-64 overflow-hidden flex-shrink-0">
-    <Image
-      src="/me.png"
-      alt="Profile"
-      fill
-      className="object-contain grayscale"
-      priority
-    />
-    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background via-background/60 to-transparent backdrop-blur-[1px]" />
-  </div>
+            {/* Profile Image */}
+            <div className="relative mb-2 h-40 w-40 sm:h-56 sm:w-56 overflow-hidden">
+              <Image
+                src="/me.png"
+                alt="Profile"
+                fill
+                className="object-contain grayscale"
+                priority
+              />
+              <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-white via-white/60 to-transparent dark:from-black dark:via-black/60 backdrop-blur-[1px]" />
+            </div>
 
-  {/* Typography Content Wrapper */}
-  <div className="flex flex-col items-center md:items-start text-center md:text-left">
-    {/* Headline Name */}
-{/* <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-mono text-foreground leading-tight">
-  sanjay_sankar
-</h1> */}
-{/* <h1 className="group mb-4 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-mono text-foreground leading-tight whitespace-nowrap">
-  <span className="text-foreground/30 transition-transform duration-300 group-hover:-translate-x-1 inline-block">[</span>
-  <span className="px-1">Sanjay Sankar</span>
-  <span className="text-foreground/30 transition-transform duration-300 group-hover:translate-x-1 inline-block">]</span>
-</h1> */}
-{/* <h1 className="mb-4 inline-flex items-center gap-3 text-4xl font-bold tracking-normal sm:text-5xl md:text-6xl font-mono text-foreground leading-tight whitespace-nowrap">
-  <span className="text-[#73c936] font-black">+</span>
-  <span className="rounded bg-[#73c936]/10 px-2 py-0.5 text-foreground dark:bg-[#73c936]/20">
-    Sanjay Sankar
-  </span>
-</h1> */}
-<h1 className="mb-4 text-3xl font-bold tracking-normal sm:text-4xl md:text-5xl font-mono text-foreground leading-tight whitespace-nowrap block text-center md:text-left">
-  {/* Terminal prompt symbol */}
-  <span className="text-foreground/30 select-none">❯ </span>
+            {/* Hero Text */}
+            <h1 className="mb-4 text-5xl font-bold tracking-tight sm:text-7xl">
+              Sanjay Sankar
+            </h1>
 
-  {/* Absolute inline animation box that naturally pushes text forward */}
-  <span className="inline-inline font-mono text-foreground/60">
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.span
-        key={command}
-        initial={{ opacity: 0, y: 3 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -3 }}
-        transition={{ duration: 0.30, ease: "easeOut" }}
-      className="inline-block align-baseline"
-      >
-        {command}
-      </motion.span>
-    </AnimatePresence>
-  </span>
+            {/* Phonetic Pronunciation (Aesthetic touch often found in minimal portfolios) */}
+            <div className="mb-8 flex flex-wrap items-center justify-center gap-2 text-xs text-gray-400 dark:text-gray-500 sm:text-sm">
+              <span>/əˈdɪtjə pɑːˈtiːl/</span>
+              <span className="text-gray-300 dark:text-gray-700">•</span>
+              <span>noun</span>
+              <span className="text-gray-300 dark:text-gray-700">•</span>
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="tabular-nums text-xs sm:text-sm">{time || "00:00:00"}</span>
+                  <span className="text-[10px] uppercase tracking-wider sm:text-xs">IST</span>
+                </div>
 
-  {/* Explicit non-breaking space guarantees perfect distance for any word length */}
-  <span>&nbsp;</span>
+              </div>
+            </div>
 
-  {/* Name element smoothly hugging the text flow boundary */}
-  <span className="underline decoration-foreground/20 underline-offset-4">
-    Sanjay Sankar
-  </span>
-</h1>
-    {/* Phonetic & Time Layout Status */}
-    <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-base font-semibold text-foreground/80 sm:text-lg">
-      <span>/sʌndʒaɪ sʌnkʌr/</span>
-      <span className="text-foreground/40">•</span>
-      <span>noun</span>
-      <span className="text-foreground/40">•</span>
-      <div className="flex items-center gap-2">
-        <span className="tabular-nums">{time || "00:00:00"}</span>
-        <span className="text-sm uppercase tracking-widest">IST</span>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-            {/* About Section */}
-            <div id="about" className="w-full space-y-4 text-left text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl scroll-mt-28">
+            <div className="w-full space-y-4 text-left text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl">
               <p>
                 a full-stack developer and <a href="https://en.wikipedia.org/wiki/Product_design" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">product builder</a> with deep experience across engineering, product strategy, and user-centric design.
               </p>
@@ -226,8 +150,10 @@ useEffect(() => {
               </p>
             </div>
 
+
+
             {/* Experience Section */}
-            <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
+            <div className="mt-6 mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Experience
               </h2>
@@ -309,6 +235,7 @@ useEffect(() => {
               </div>
             </div>
 
+
             {/* In Between These Experiences Section */}
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
@@ -322,16 +249,23 @@ useEffect(() => {
                 >
                   <div className="space-y-4">
                     <p>I've been building and experimenting on the product side for a long time. Each previous product always feels naive in hindsight, but looking back, I can see they were incrementally better, each iteration teaching me something new about users, infrastructure, and what it takes to build something people actually want.</p>
+
                     <p>It started with <span className="font-medium">MetaWiper</span> during my sophomore year, a tool that cleaned image metadata. No one would use it, but I was proud. It was my first real attempt at shipping something complete.</p>
+
                     <p>Next came <span className="font-medium">Stockic</span>, a news app where I spent months doing serious infrastructure work. This was where I learned to build systems that could scale, not just features that looked good.</p>
+
                     <p>Then I worked on <span className="font-medium">Gloss Card</span>, and for the first time, a customer actually wanted to buy it for their product. That validation, knowing someone saw enough value to pay, was a turning point.</p>
+
                     <p>After that, I built <span className="font-medium">NeuraLeap</span>, where I had the most meaningful user interactions yet, HRs from established firms. I worked on data pipelines capable of handling 50 million LinkedIn profiles and processing them with AI. The scale was different, the stakes were higher, and the technical challenges forced me to level up.</p>
+
                     <p>Most recently, I worked on <span className="font-medium">Meteor</span>, an AI SEO toolkit at Entrepreneurs First. This time, my product was being used by 6 YC-backed companies. Real users. Real traction. Real feedback loops.</p>
-                    <p className="font-medium text-black dark:text-white">So yes, hard work and consistency pay off. Each product was a step forward, even when it didn't feel like it at the time.</p>
+
+                    <p className="font-medium text-black">So yes, hard work and consistency pay off. Each product was a step forward, even when it didn't feel like it at the time.</p>
                   </div>
                 </ExperienceItem>
               </div>
             </div>
+
 
             {/* Education Section */}
             <div className="mb-16 w-full text-left">
@@ -455,6 +389,87 @@ useEffect(() => {
               </p>
             </div>
 
+            {/* Library Section */}
+            <div className="mb-16 w-full text-left">
+              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                Library
+              </h2>
+
+              <div className={`relative transition-all duration-500 ${!libraryExpanded ? "max-h-32 overflow-hidden" : ""}`}>
+                {/* Dev Subsection */}
+                <div className="mb-8">
+                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-600">
+                    Dev
+                  </h3>
+                  <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    {[
+                      { title: "Linux Kernel Development", author: "Robert Love" },
+                      { title: "Hacking: The Art of Exploitation", author: "Jon Erickson" },
+                      { title: "Linux in a Nutshell", author: "Ellen Siever, Stephen Figgins, Robert Love, and Arnold Robbins" },
+                      { title: "Linux Kernel in a Nutshell", author: "Greg Kroah-Hartman" },
+                      { title: "The Art of Electronics", author: "Paul Horowitz and Winfield Hill" },
+                      { title: "Nmap Cookbook", author: "Nicholas Marsh" }
+                    ].map((book) => (
+                      <div key={book.title} className="group flex flex-col gap-1 transition-all">
+                        <span className="text-sm font-medium text-black dark:text-white group-hover:underline underline-offset-4 decoration-gray-200 dark:decoration-gray-800 transition-all">
+                          {book.title}
+                        </span>
+                        <span className="text-xs text-gray-400 dark:text-gray-500">
+                          {book.author}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Casual Reads Subsection */}
+                <div className="mb-4">
+                  <h3 className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-600">
+                    Casual Reads
+                  </h3>
+                  <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                    {[
+                      { title: "Hooked: How to Build Habit-Forming Products", author: "Nir Eyal" },
+                      { title: "The Lean Startup", author: "Eric Ries" },
+                      { title: "Zero to One", author: "Peter Thiel" },
+                      { title: "The Almanack of Naval Ravikant", author: "Eric Jorgenson" },
+                      { title: "Deep Work", author: "Cal Newport" },
+                      { title: "The Anthology of Balaji Srinivasan", author: "Eric Jorgenson" }
+                    ].map((book) => (
+                      <div key={book.title} className="group flex flex-col gap-1 transition-all">
+                        <span className="text-sm font-medium text-black dark:text-white group-hover:underline underline-offset-4 decoration-gray-200 dark:decoration-gray-800 transition-all">
+                          {book.title}
+                        </span>
+                        <span className="text-xs text-gray-400 dark:text-gray-500">
+                          {book.author}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Note */}
+                <p className="mt-6 text-xs italic text-gray-400 dark:text-gray-500">
+                  *and many more, these are just one of my best reads
+                </p>
+
+                {!libraryExpanded && (
+                  <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white dark:from-black to-transparent" />
+                )}
+              </div>
+
+              <button
+                onClick={() => setLibraryExpanded(!libraryExpanded)}
+                className="mt-3 flex items-center gap-1 text-xs font-medium text-gray-400 dark:text-gray-500 hover:text-black dark:hover:text-white transition-colors"
+              >
+                {libraryExpanded ? (
+                  <>View Less <ChevronUp className="h-3 w-3" /></>
+                ) : (
+                  <>View More <ChevronDown className="h-3 w-3" /></>
+                )}
+              </button>
+            </div>
+
             {/* Thing about me Section */}
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
@@ -464,18 +479,19 @@ useEffect(() => {
                 <p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
                   beyond engineering and build systems, i find balance in the tactile and the thoughtful. whether it&apos;s exploring the nuances of complex architectures or spending time in the real world, my approach to life is driven by curiosity and a desire to understand how things work at their core.
                 </p>
-                <p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
+
+<p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
                   i believe that the best products are built by people who have a diverse range of interests. it&apos;s the unique combination of technical depth and human perspective that allows us to create technology that actually resonates.
                 </p>
               </div>
             </div>
 
             {/* Get in Touch Section */}
-            <div id="contact" className="mb-16 w-full text-left scroll-mt-28">
+            <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400">
                 Get in Touch
               </h2>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <p className="text-lg text-gray-600 dark:text-gray-400">
                   connect with me on{" "}
                   <a
@@ -486,105 +502,120 @@ useEffect(() => {
                   >
                     linkedin
                   </a>{" "}
-                  or shoot an email to{" "}
+                  or{" "} shoot an {" "}
                   <a
-                    href="mailto:aditya@example.com"
+                    href="mailto:adityapatil24680@gmail.com"
                     className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
                   >
-                    aditya@example.com
+                    email
                   </a>
                 </p>
-
-                {/* Social Icon Links Row */}
-                <nav className="fixed left-6 top-1/2 z-50 flex -translate-y-1/2 flex-col items-center gap-7 rounded-3xl border border-gray-200 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/80 px-4 py-5 shadow-sm backdrop-blur-md transition-all hover:bg-white/90 dark:hover:bg-zinc-900 text-gray-400 dark:text-zinc-500">
-                    <div className="flex items-center gap-6">
-                              <ThemeToggle />
-                          </div>
-                  <a
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
-                    title="GitHub"
-                  >
-                    <Github className="h-5 w-5" />
-                  </a>
-
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
-                    title="LinkedIn"
-                  >
-                    <Linkedin className="h-5 w-5" />
-                  </a>
-
-                  <a
-                    href="https://x.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
-                    title="Twitter/X"
-                  >
-                    <FaXTwitter className="h-5 w-5" />
-                  </a>
-
-                  <a
-                    href="https://youtube.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
-                    title="YouTube"
-                  >
-                    <Youtube className="h-5 w-5" />
-                  </a>
-
-                  <button
-                    onClick={() => setShowQR(true)}
-                    className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
-                    title="Show QR Code"
-                  >
-                    <QrCode className="h-5 w-5" />
-                  </button>
-                </nav>
               </div>
             </div>
+
+
+
+
           </motion.main>
         )}
       </AnimatePresence>
 
-      {/* QR Code Modal Overlay */}
-      <AnimatePresence>
-        {showQR && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+      {/* Glass Island Navbar */}
+<nav className="fixed top-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-6 rounded-3xl border border-gray-200 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/80 px-6 py-4 shadow-sm backdrop-blur-md transition-all hover:bg-white/90 dark:hover:bg-zinc-900">
+</nav>
+  <nav className="fixed left-6 top-1/2 z-50 flex -translate-y-1/2 flex-col items-center gap-6 rounded-3xl border border-gray-200 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/80 px-4 py-5 shadow-sm backdrop-blur-md transition-all hover:bg-white/90 dark:hover:bg-zinc-900">
+  <div className="flex items-center gap-6">
+            <ThemeToggle />
+        </div>
+        <button
+          onClick={() => setShowQR(true)}
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+          aria-label="Show QR Code"
+        >
+          <QrCode className="h-5 w-5" />
+        </button>
+        <div className="h-px w-9 bg-gray-200 dark:bg-zinc-700" />
+        <a
+          href="https://github.com/PythonHacker24"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+        >
+          <Github className="h-5 w-5" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/aditya-patil-260a631b2/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+        >
+          <Linkedin className="h-5 w-5" />
+        </a>
+        <a
+          href="https://x.com/firecaffeine"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+        >
+          <FaXTwitter className="h-5 w-5" />
+        </a>
+        <a
+          href="https://youtube.com/@theracecondition"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+        >
+          <Youtube className="h-5 w-5" />
+        </a>
+        <a
+          href="https://discord.gg/ry4YCJaShK"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+        >
+          <DiscordIcon className="h-5 w-5" />
+        </a>
+        <a
+          href="https://cal.com/adi-patil/30min"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+        >
+          <Calendar className="h-5 w-5" />
+        </a>
+      </nav >
+
+    {/* QR Code Modal */ }
+  {
+    showQR && (
+      <div
+        className="fixed inset-0 z-[60] flex items-center justify-center bg-black/20 dark:bg-white/5 backdrop-blur-sm"
+        onClick={() => setShowQR(false)}
+      >
+        <div
+          className="relative rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-black p-8 shadow-2xl"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
             onClick={() => setShowQR(false)}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 dark:bg-black/60"
+            className="absolute -right-3 -top-3 rounded-full bg-black dark:bg-white p-2 text-white dark:text-black transition-transform hover:scale-110"
+            aria-label="Close"
           >
-            <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative flex flex-col items-center gap-4 rounded-2xl border border-gray-100 bg-white p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
-            >
-              <button
-                onClick={() => setShowQR(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-black dark:hover:text-white"
-              >
-                <X className="h-4 w-4" />
-              </button>
-              <div className="rounded-lg bg-white p-3">
-                <QRCodeSVG value={window.location.href} size={180} />
-              </div>
-              <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Scan to share portfolio</p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+            <X className="h-4 w-4" />
+          </button>
+          <div className="rounded-lg bg-white p-2">
+            <QRCodeSVG
+              value="https://www.justaditya.com/"
+              size={200}
+              level="H"
+              includeMargin={false}
+            />
+          </div>
+        </div>
+      </div>
+    )
+  }
+    </div >
   );
 }
+
