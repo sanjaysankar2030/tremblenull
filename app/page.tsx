@@ -13,6 +13,7 @@ import { useTheme } from "next-themes";
 import { QRCodeSVG } from "qrcode.react";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
+import ProfileImage from './components/ProfileImage.tsx'; // Adjust path depending on your alias config
 
 import { getMarkdownContent } from "./data/content";
 
@@ -39,8 +40,7 @@ export default function Home() {
           timeZone: "Asia/Kolkata",
           hour: "2-digit",
           minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
+          hour12: true,
         })
       );
     };
@@ -53,7 +53,7 @@ export default function Home() {
   const markdownContent = getMarkdownContent(time);
   const [command, setCommand] = useState("javac");
 
-  useEffect(() => {
+  useEffect(() => { 
     const commands = ["javac", "tcc -run", "python3", "go run", "mvn spring-boot:run", 'mysql -u root -p', "make run"];
     let currentIndex = 0;
 
@@ -157,13 +157,7 @@ export default function Home() {
             <div id="intro" className="w-full flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-12 mb-16 scroll-mt-28">
 
               <div className="relative h-40 w-40 sm:h-52 sm:w-52 md:h-64 md:w-64 overflow-hidden flex-shrink-0 rounded-4xl">
-                <Image
-                  src="/178389178.jfif"
-                  alt="Profile"
-                  fill
-                  className="object-contain "
-                  priority
-                />
+                <ProfileImage />
               </div>
 
               {/* Typography Content */}
@@ -178,7 +172,7 @@ export default function Home() {
                         initial={{ opacity: 0, y: 3 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -3 }}
-                        transition={{ duration: 0.30, ease: "easeOut" }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                         className="inline-block align-baseline"
                       >
                         {command}
@@ -197,7 +191,7 @@ export default function Home() {
                     <span className="text-foreground/40">•</span>
                     <span>Based In TamilNadu , India</span>
                     <span className="text-foreground/40">•</span>
-                    <span className="tabular-nums">{time || "00:00:00"}</span>
+                    <span className="tabular-nums">{time || "00:00"}</span>
                     <span className="text-xs uppercase tracking-widest">IST</span>
                   </div>
                   <span>/சஞ்சய் சங்கர்/</span>
