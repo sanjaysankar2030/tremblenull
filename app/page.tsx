@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image"; //  Correctimport { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react"; import { FaXTwitter } from "react-icons/fa6";
+import Image from "next/image";
+import { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import { FaXTwitter } from "react-icons/fa6";
 import { ExperienceItem } from "./components/ExperienceItem";
 import { GithubGraph } from "./components/GithubGraph";
 import { TechStack } from "./components/TechStack";
@@ -24,7 +25,7 @@ export default function Home() {
   const [time, setTime] = useState<string>("");
   const [showQR, setShowQR] = useState(false);
   const [mode, setMode] = useState<"human" | "agent">("human");
-  const [libraryExpanded, setLibraryExpanded] = useState(false);
+  // FIX: removed unused libraryExpanded state
 
   const { setTheme, resolvedTheme } = useTheme();
 
@@ -50,17 +51,18 @@ export default function Home() {
   const markdownContent = getMarkdownContent(time);
   const [command, setCommand] = useState("javac");
 
-useEffect(() => {
-  const commands = ["javac", "tcc", "python3", "go run"];
-  let currentIndex = 0;
+  useEffect(() => {
+    const commands = ["javac", "tcc", "python3", "go run"];
+    let currentIndex = 0;
 
-  const interval = setInterval(() => {
-    currentIndex = (currentIndex + 1) % commands.length;
-    setCommand(commands[currentIndex]);
-  }, 2500); // Cycles every 2.5 seconds
+    const interval = setInterval(() => {
+      currentIndex = (currentIndex + 1) % commands.length;
+      setCommand(commands[currentIndex]);
+    }, 2500);
 
-  return () => clearInterval(interval);
-}, []);
+    return () => clearInterval(interval);
+  }, []);
+
   // Smooth scroll helper
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
@@ -71,9 +73,12 @@ useEffect(() => {
   };
 
   return (
-<div className="relative flex min-h-screen flex-col items-center bg-background text-foreground px-3 pt-16 selection:bg-foreground dark:selection:bg-background selection:text-background dark:selection:text-foreground pb-32 sm:px-4 sm:pt-24 sm:pb-40 overflow-x-hidden transition-colors duration-300">  {/* Dynamic Floating Navbar */}
-  {mode === "human" && (
-<div className="fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-foreground/20 bg-background/90 px-3 py-2 backdrop-blur-md sm:flex shadow-sm">          {[
+    <div className="relative flex min-h-screen flex-col items-center bg-background text-foreground px-4 pt-16 selection:bg-foreground dark:selection:bg-background selection:text-background dark:selection:text-foreground pb-32 sm:px-6 sm:pt-24 sm:pb-40 overflow-x-hidden transition-colors duration-300">
+
+      {/* Desktop Floating Navbar — hidden on mobile */}
+      {mode === "human" && (
+        <div className="fixed top-6 left-1/2 z-50 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-foreground/20 bg-background/90 px-3 py-2 backdrop-blur-md sm:flex shadow-sm">
+          {[
             { label: "Intro", id: "intro" },
             { label: "About", id: "about" },
             { label: "Experience", id: "experience" },
@@ -91,8 +96,13 @@ useEffect(() => {
         </div>
       )}
 
-      {/* Mode & Theme Toggles Container */}
-      <div className="fixed top-6 right-6 z-50 flex items-center gap-4">
+      {/* FIX: Top-right controls — mode toggle + theme toggle (theme toggle visible on mobile here) */}
+      <div className="fixed top-4 right-4 z-50 flex items-center gap-3 sm:top-6 sm:right-6">
+        {/* Theme toggle visible on mobile since sidebar is hidden */}
+        <div className="sm:hidden">
+          <ThemeToggle />
+        </div>
+
         <button
           onClick={() => setMode(mode === "human" ? "agent" : "human")}
           className="group relative flex h-7 w-12 cursor-pointer rounded-full bg-gray-200 dark:bg-zinc-700 p-1 transition-colors duration-200 ease-in-out hover:bg-gray-300 dark:hover:bg-zinc-600 focus:outline-none"
@@ -101,8 +111,7 @@ useEffect(() => {
           title={`Switch to ${mode === "human" ? "agent" : "human"} mode`}
         >
           <div
-            className={`flex h-5 w-5 transform items-center justify-center rounded-full bg-white shadow-sm transition duration-200 ease-in-out ${mode === "agent" ? "translate-x-5" : "translate-x-0"
-              }`}
+            className={`flex h-5 w-5 transform items-center justify-center rounded-full bg-white shadow-sm transition duration-200 ease-in-out ${mode === "agent" ? "translate-x-5" : "translate-x-0"}`}
           >
             {mode === "human" ? (
               <User className="h-3 w-3 text-black" />
@@ -122,7 +131,7 @@ useEffect(() => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex w-full max-w-2xl flex-col items-start text-left px-4 sm:px-0"
+            className="flex w-full max-w-2xl flex-col items-start text-left px-0"
           >
             <pre
               className="w-full whitespace-pre-wrap font-mono text-sm leading-relaxed text-black dark:text-gray-300 selection:bg-black dark:selection:bg-white selection:text-white dark:selection:text-black antialiased"
@@ -141,80 +150,84 @@ useEffect(() => {
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="flex w-full max-w-2xl flex-col items-center text-center pt-8 sm:pt-4"
           >
- {/* Container isolating just the image and text layout */}
-<div className="w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-16">
-  
-  {/* Profile Image Asset */}
-  <div className="relative h-44 w-120 sm:h-56 sm:w-56 md:h-64 md:w-64 overflow-hidden flex-shrink-0">
-    <Image
-      src="/me.png"
-      alt="Profile"
-      fill
-      className="object-contain grayscale"
-      priority
-    />
-    <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background via-background/60 to-transparent backdrop-blur-[1px]" />
-  </div>
+            {/* FIX: Profile image + intro — stacks vertically on mobile, side-by-side on md+ */}
+            <div id="intro" className="w-full flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-12 mb-16 scroll-mt-28">
 
-  {/* Typography Content Wrapper */}
-  <div className="flex flex-col items-center md:items-start text-center md:text-left">
-    {/* Headline Name */}
-{/* <h1 className="mb-4 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-mono text-foreground leading-tight">
-  sanjay_sankar
-</h1> */}
-{/* <h1 className="group mb-4 text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl font-mono text-foreground leading-tight whitespace-nowrap">
-  <span className="text-foreground/30 transition-transform duration-300 group-hover:-translate-x-1 inline-block">[</span>
-  <span className="px-1">Sanjay Sankar</span>
-  <span className="text-foreground/30 transition-transform duration-300 group-hover:translate-x-1 inline-block">]</span>
-</h1> */}
-{/* <h1 className="mb-4 inline-flex items-center gap-3 text-4xl font-bold tracking-normal sm:text-5xl md:text-6xl font-mono text-foreground leading-tight whitespace-nowrap">
-  <span className="text-[#73c936] font-black">+</span>
-  <span className="rounded bg-[#73c936]/10 px-2 py-0.5 text-foreground dark:bg-[#73c936]/20">
-    Sanjay Sankar
-  </span>
-</h1> */}
-<h1 className="mb-4 text-3xl font-bold tracking-normal sm:text-4xl md:text-5xl font-mono text-foreground leading-tight whitespace-nowrap block text-center md:text-left">
-  {/* Terminal prompt symbol */}
-  <span className="text-foreground/30 select-none">❯ </span>
+              {/* Profile Image — FIX: removed non-standard w-120, use proper responsive sizing */}
+              <div className="relative h-40 w-40 sm:h-52 sm:w-52 md:h-64 md:w-64 overflow-hidden flex-shrink-0 rounded-4xl">
+                <Image
+                  src="/178389178.jfif"
+                  alt="Profile"
+                  fill
+                  className="object-contain "
+                  priority
+                />
+                {/* <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background via-background/60 to-transparent backdrop-blur-[1px]" /> */}
+              </div>
 
-  {/* Absolute inline animation box that naturally pushes text forward */}
-  <span className="inline-inline font-mono text-foreground/60">
-    <AnimatePresence mode="wait" initial={false}>
-      <motion.span
-        key={command}
-        initial={{ opacity: 0, y: 3 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -3 }}
-        transition={{ duration: 0.30, ease: "easeOut" }}
-      className="inline-block align-baseline"
-      >
-        {command}
-      </motion.span>
-    </AnimatePresence>
-  </span>
+              {/* Typography Content */}
+              <div className="flex flex-col items-center md:items-start text-center md:text-left w-full min-w-0">
+                {/* FIX: removed whitespace-nowrap which caused overflow on mobile */}
+                <div className="mb- flex flex-col items-center md:items-start gap-1 w-full">
+                  <span className="font-mono text-lg sm:text-2xl md:text-33xl text-foreground/50 tracking-tight">
+                    <span className="text-foreground/30 select-none">❯ </span>
+                    <AnimatePresence mode="wait" initial={false}>
+                      <motion.span
+                        key={command}
+                        initial={{ opacity: 0, y: 3 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -3 }}
+                        transition={{ duration: 0.30, ease: "easeOut" }}
+                        className="inline-block align-baseline"
+                      >
+                        {command}
+                      </motion.span>
+                    </AnimatePresence>
+                  </span>
 
-  {/* Explicit non-breaking space guarantees perfect distance for any word length */}
-  <span>&nbsp;</span>
+                  <h1 className="text-3xl font-bold tracking-normal sm:text-4xl md:text-5xl font-mono text-foreground leading-tight text-center md:text-left w-full">
+                    Sanjay Sankar
+                  </h1>
+                </div>
 
-  {/* Name element smoothly hugging the text flow boundary */}
-  <span className="underline decoration-foreground/20 underline-offset-4">
-    Sanjay Sankar
-  </span>
-</h1>
-    {/* Phonetic & Time Layout Status */}
-    <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 text-base font-semibold text-foreground/80 sm:text-lg">
-      <span>/sʌndʒaɪ sʌnkʌr/</span>
-      <span className="text-foreground/40">•</span>
-      <span>noun</span>
-      <span className="text-foreground/40">•</span>
-      <div className="flex items-center gap-2">
-        <span className="tabular-nums">{time || "00:00:00"}</span>
-        <span className="text-sm uppercase tracking-widest">IST</span>
-      </div>
-    </div>
-  </div>
+                {/* Phonetic & Time — FIX: wraps gracefully on mobile */}
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-sm sm:text-base font-semibold text-foreground/80 sm:text-lg">
+                  {/* <span className="text-foreground/40">•</span> */}
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-foreground/40">•</span>
+                    <span>Based In TamilNadu , India</span>
+                    <span className="text-foreground/40">•</span>
+                    <span className="tabular-nums">{time || "00:00:00"}</span>
+                    <span className="text-xs uppercase tracking-widest">IST</span>
+                  </div>
+                  <span className="text-foreground/40">•</span>
+                  <span>/சஞ்சய் சங்கர்/</span>
+                </div>
+              </div>
+            </div>
 
-</div>
+            {/* Education Section */}
+            <div className="mb-16 w-full text-left">
+              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                Education
+              </h2>
+              <div className="space-y-12">
+                <ExperienceItem
+                  title="National Institute of Technology Hamirpur"
+                  role="Electrical Engineering"
+                >
+                  <p>2022 - Surviving</p>
+                </ExperienceItem>
+              </div>
+            </div>
+
+            {/* Contributions Section */}
+            <div className="mb-16 w-full text-left">
+              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                GitHub Contributions
+              </h2>
+              <GithubGraph />
+            </div>
 
             {/* About Section */}
             <div id="about" className="w-full space-y-4 text-left text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl scroll-mt-28">
@@ -225,6 +238,8 @@ useEffect(() => {
                 a <a href="https://en.wikipedia.org/wiki/Polymath" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">polymath</a> who bridges technical architecture with business outcomes to create impactful, scalable solutions.
               </p>
             </div>
+
+
 
             {/* Experience Section */}
             <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
@@ -314,7 +329,7 @@ useEffect(() => {
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 In Between These Experiences
               </h2>
-              <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8">
+              <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-6 md:p-8">
                 <ExperienceItem
                   title="The Product Building Journey"
                   role=""
@@ -333,7 +348,7 @@ useEffect(() => {
               </div>
             </div>
 
-            {/* Education Section */}
+            {/* Education Section
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Education
@@ -346,15 +361,15 @@ useEffect(() => {
                   <p>2022 - Surviving</p>
                 </ExperienceItem>
               </div>
-            </div>
+            </div> */}
 
-            {/* Contributions Section */}
+            {/* Contributions Section
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 GitHub Contributions
               </h2>
               <GithubGraph />
-            </div>
+            </div> */}
 
             {/* Tech Stack Section */}
             <div className="mb-16 w-full text-left">
@@ -495,11 +510,11 @@ useEffect(() => {
                   </a>
                 </p>
 
-                {/* Social Icon Links Row */}
-                <nav className="fixed left-6 top-1/2 z-50 flex -translate-y-1/2 flex-col items-center gap-7 rounded-3xl border border-gray-200 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/80 px-4 py-5 shadow-sm backdrop-blur-md transition-all hover:bg-white/90 dark:hover:bg-zinc-900 text-gray-400 dark:text-zinc-500">
-                    <div className="flex items-center gap-6">
-                              <ThemeToggle />
-                          </div>
+                {/* FIX: Desktop-only left sidebar — hidden on mobile */}
+                <nav className="fixed left-6 top-1/2 z-50 hidden lg:flex -translate-y-1/2 flex-col items-center gap-7 rounded-3xl border border-gray-200 dark:border-zinc-700 bg-white/70 dark:bg-zinc-900/80 px-4 py-5 shadow-sm backdrop-blur-md transition-all hover:bg-white/90 dark:hover:bg-zinc-900 text-gray-400 dark:text-zinc-500">
+                  <div className="flex items-center gap-6">
+                    <ThemeToggle />
+                  </div>
                   <a
                     href="https://github.com"
                     target="_blank"
@@ -509,7 +524,6 @@ useEffect(() => {
                   >
                     <Github className="h-5 w-5" />
                   </a>
-
                   <a
                     href="https://linkedin.com"
                     target="_blank"
@@ -519,7 +533,6 @@ useEffect(() => {
                   >
                     <Linkedin className="h-5 w-5" />
                   </a>
-
                   <a
                     href="https://x.com"
                     target="_blank"
@@ -529,7 +542,6 @@ useEffect(() => {
                   >
                     <FaXTwitter className="h-5 w-5" />
                   </a>
-
                   <a
                     href="https://youtube.com"
                     target="_blank"
@@ -539,7 +551,6 @@ useEffect(() => {
                   >
                     <Youtube className="h-5 w-5" />
                   </a>
-
                   <button
                     onClick={() => setShowQR(true)}
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
@@ -548,6 +559,29 @@ useEffect(() => {
                     <QrCode className="h-5 w-5" />
                   </button>
                 </nav>
+
+                {/* FIX: Mobile social row — horizontal bar at bottom, only shown on mobile */}
+                <div className="flex lg:hidden items-center justify-center gap-6 pt-4 text-gray-400 dark:text-zinc-500">
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="GitHub">
+                    <Github className="h-5 w-5" />
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="LinkedIn">
+                    <Linkedin className="h-5 w-5" />
+                  </a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="Twitter/X">
+                    <FaXTwitter className="h-5 w-5" />
+                  </a>
+                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="YouTube">
+                    <Youtube className="h-5 w-5" />
+                  </a>
+                  <button
+                    onClick={() => setShowQR(true)}
+                    className="hover:text-black dark:hover:text-white transition-colors"
+                    title="Show QR Code"
+                  >
+                    <QrCode className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </motion.main>
@@ -555,6 +589,7 @@ useEffect(() => {
       </AnimatePresence>
 
       {/* QR Code Modal Overlay */}
+      {/* FIX: guard window.location.href access behind typeof window check */}
       <AnimatePresence>
         {showQR && (
           <motion.div
@@ -569,7 +604,7 @@ useEffect(() => {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative flex flex-col items-center gap-4 rounded-2xl border border-gray-100 bg-white p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-900"
+              className="relative flex flex-col items-center gap-4 rounded-2xl border border-gray-100 bg-white p-6 sm:p-8 shadow-xl dark:border-zinc-800 dark:bg-zinc-900 w-[calc(100%-2rem)] max-w-xs"
             >
               <button
                 onClick={() => setShowQR(false)}
@@ -578,7 +613,9 @@ useEffect(() => {
                 <X className="h-4 w-4" />
               </button>
               <div className="rounded-lg bg-white p-3">
-                <QRCodeSVG value={window.location.href} size={180} />
+                {typeof window !== "undefined" && (
+                  <QRCodeSVG value={window.location.href} size={160} />
+                )}
               </div>
               <p className="text-xs font-medium text-gray-500 dark:text-gray-400">Scan to share portfolio</p>
             </motion.div>
