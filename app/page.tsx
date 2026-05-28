@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { Github, Linkedin, Youtube, Calendar, Bot, User, QrCode, X, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
 import { FaXTwitter } from "react-icons/fa6";
+import { CgFileDocument } from "react-icons/cg";
+import { SiLeetcode } from "react-icons/si";
 import { ExperienceItem } from "./components/ExperienceItem";
 import { GithubGraph } from "./components/GithubGraph";
 import { TechStack } from "./components/TechStack";
@@ -81,6 +83,7 @@ export default function Home() {
           {[
             { label: "Intro", id: "intro" },
             { label: "About", id: "about" },
+            { label: "Projects", id: "projects" },
             { label: "Experience", id: "experience" },
             { label: "Contact", id: "contact" }
           ].map((nav) => (
@@ -246,7 +249,7 @@ export default function Home() {
               </p>
               <p>
                 open to{" "}
-                <a href="#contact" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">
+                <a href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">
                   internships and campus placements
                 </a>
                 . if you're building something ambitious, let's talk.
@@ -265,8 +268,8 @@ export default function Home() {
             </div>
 
             {/* Projects Spotlight Section */}
-            <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
             <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+            <div id="projects" className="mt-16 mb-16 w-full text-left scroll-mt-28">
 
               <div className="mb-16 w-full text-left">
                 <ExperienceItem
@@ -285,14 +288,14 @@ export default function Home() {
                       <a href="https://sanjaysankar.framer.website/product/java-bpe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
 
-                    <hr />
+                    <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-5" />
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Go-ML Framework</h3>
                       <p className="text-sm text-gray-400 dark:text-gray-500">Golang</p>
                       <p className="text-gray-600 dark:text-gray-400">Systems-level ML framework ported from C-based nn.h architecture to Go — built to understand model internals from the ground up.</p>
                       <a href="https://sanjaysankar.framer.website/product/go-ml" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-                    <hr />
+                    <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-5" />
 
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Smart Clinic Management System</h3>
@@ -300,7 +303,7 @@ export default function Home() {
                       <p className="text-gray-600 dark:text-gray-400">Full-stack web app handling medical appointments, patient records, and staff scheduling for clinic operations.</p>
                       <a href="https://sanjaysankar.framer.website/product/healthcare" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-                    <hr />
+                    <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-5" />
 
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Retail-Core: Microservices API Suite</h3>
@@ -308,7 +311,7 @@ export default function Home() {
                       <p className="text-gray-600 dark:text-gray-400">RESTful backend suite covering inventory tracking, order processing, and transactional data management at scale.</p>
                       <a href="https://sanjaysankar.framer.website/product/retail-api" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-                    <hr />
+                    <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-5" />
 
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Pet Care Scheduler</h3>
@@ -316,17 +319,53 @@ export default function Home() {
                       <p className="text-gray-600 dark:text-gray-400">Modular console app for managing pet services, built as a deep-dive into advanced Core Java design patterns.</p>
                       <a href="https://sanjaysankar.framer.website/product/hugo-vicario" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-                    <hr />
+                    <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-5" />
 
                   </div>
                 </ExperienceItem>
               </div>
+              <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-5" />
+
+              {/* Certifications Section */}
+              {/* <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" /> */}
+              <div className="mb-16 w-full text-left">
+                <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                  Certifications
+                </h2>
+                <div className="w-full">
+                  <div className="flex items-start justify-between gap-4 py-4 border-b border-gray-100 dark:border-gray-800">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-black dark:text-white leading-snug">IBM Java Developer Professional Certificate</p>
+                      <p className="mt-0.5 text-xs text-gray-500">IBM <span className="mx-1">·</span> Mar 2026</p>
+                      <p className="mt-1 text-xs text-gray-400 dark:text-gray-600">Cloud Native, Microservices, Containers, DevOps, and Agile</p>
+                    </div>
+                    <a href="https://www.credly.com/badges/f41d93af-bae9-4a17-830d-496e4972472c/linked_in_profile" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">verify</a>
+                  </div>
+                  <div className="flex items-start justify-between gap-4 py-4 border-b border-gray-100 dark:border-gray-800">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-black dark:text-white leading-snug">AWS Cloud Practitioner Essentials</p>
+                      <p className="mt-0.5 text-xs text-gray-500">Amazon Web Services (AWS) <span className="mx-1">·</span> Mar 2026 <span className="mx-1">·</span> ID: QMWWTGJGKC9B</p>
+                      <p className="mt-1 text-xs text-gray-400 dark:text-gray-600">Foundational cloud computing and AWS services</p>
+                    </div>
+                    <a href="https://www.coursera.org/account/accomplishments/records/QMWWTGJGKC9B" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">verify</a>
+                  </div>
+                  <div className="flex items-start justify-between gap-4 py-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-black dark:text-white leading-snug">Programming with Google Go</p>
+                      <p className="mt-0.5 text-xs text-gray-500">UC Irvine <span className="mx-1">·</span> ID: O070J3MJK7Q6</p>
+                      <p className="mt-1 text-xs text-gray-400 dark:text-gray-600">Go Specialization</p>
+                    </div>
+                    <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/O070J3MJK7Q6" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">verify</a>
+                  </div>
+                </div>
+              </div>
+
               {/* </div> */}
               {/* Experience Section */}
               {/* <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28"> */}
-                          <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+              <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
 
-              <h2 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
+              <h2 id="experience" className="text-gray-900 dark:text-gray-100 font-medium text-lg scroll-mt-28">
                 Experience
               </h2>
               <div className="mt-8 space-y-12">
@@ -352,7 +391,8 @@ export default function Home() {
                     </ul>
                   </div>
                 </div>
-                <hr />                {/* Internship 2: Cognifiz */}
+                <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+
                 <div className="group relative">
                   <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-baseline">
                     <h3 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
@@ -378,9 +418,12 @@ export default function Home() {
               </div>
             </div>
 
-           
+
+
+
             {/* Projects Spotlight Section */}
 
+            <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Documentation
@@ -389,12 +432,13 @@ export default function Home() {
                 <p>
                   {/* Added mr-3 for a clean gap */}
                   <span className="text-foreground/40 mr-3">•</span>
+
                   View my professional experience and technical background in my{" "}
                   <a
                     href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
+                    rel="s noreferrer"
+                    className="text-black dark:text-white underline underline-offset-4 hover:text-gray-500 dark:hover:text-gray-400 transition-colors"
                   >
                     updated resume
                   </a>
@@ -406,15 +450,17 @@ export default function Home() {
                   <a
                     href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view"
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
+                    rel="noopener "
+                    className="text-black dark:text-white underline underline-offset-4 hover:text-gray-500 dark:hover:text-gray-400 transition-colors"
                   >
                     system design breakdowns
                   </a>
                 </p>
               </div>
             </div>
-            {/* Writings & Blogs Section */}
+            <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+
+            {/* Writings & Blogs Section
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Writings & Blogs
@@ -431,7 +477,7 @@ export default function Home() {
                 </a>{" "}
                 rather than building a custom site. instead of overengineering and reinventing the wheel, i prefer leveraging a mature platform that lets me focus on what matters: sharing insights on ai systems, product strategy, and technical architecture.
               </p>
-            </div>
+            </div> */}
 
             <div className="mb-12 w-full text-left">
               <div id="contact" className="mb-16 w-full text-left scroll-mt-28">
@@ -467,7 +513,8 @@ export default function Home() {
                 </div>
               </div>
 
-            
+              <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400">
                 Get in Touch
               </h2>
@@ -497,7 +544,7 @@ export default function Home() {
                     <ThemeToggle />
                   </div>
                   <a
-                    href="https://github.com"
+                    href="https://github.com/sanjaysankar2030"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
@@ -506,7 +553,7 @@ export default function Home() {
                     <Github className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/in/sankarsanjay"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
@@ -515,7 +562,7 @@ export default function Home() {
                     <Linkedin className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://x.com"
+                    href="https://x.com/tremblenull"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
@@ -524,35 +571,44 @@ export default function Home() {
                     <FaXTwitter className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://youtube.com"
+                    href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
-                    title="YouTube"
+                    title="Resume"
                   >
-                    <Youtube className="h-5 w-5" />
+                    <CgFileDocument  className="h-5 w-5" />
                   </a>
-                  <button
+                  {/* <button
                     onClick={() => setShowQR(true)}
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
                     title="Show QR Code"
                   >
                     <QrCode className="h-5 w-5" />
-                  </button>
+                  </button> */}
+                   <a
+                    href="https://leetcode.com/u/Sanjay___/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
+                    title="Resume"
+                  >
+                    < SiLeetcode className="h-5 w-5" />
+                  </a>
                 </nav>
 
                 {/* FIX: Mobile social row — horizontal bar at bottom, only shown on mobile */}
                 <div className="flex lg:hidden items-center justify-center gap-6 pt-4 text-gray-400 dark:text-zinc-500">
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="GitHub">
+                  <a href="https://github.com/sanjaysankar2030" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="GitHub">
                     <Github className="h-5 w-5" />
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="LinkedIn">
+                  <a href="https://linkedin.com/sankarsanjay/" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="LinkedIn">
                     <Linkedin className="h-5 w-5" />
                   </a>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="Twitter/X">
+                  <a href="https://x.com/tremblenull" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="Twitter/X">
                     <FaXTwitter className="h-5 w-5" />
                   </a>
-                  <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="YouTube">
+                  <a href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view" target="_blank" rel="noopener noreferrer" className="hover:text-black dark:hover:text-white transition-colors" title="YouTube">
                     <Youtube className="h-5 w-5" />
                   </a>
                   <button
@@ -565,7 +621,19 @@ export default function Home() {
                 </div>
               </div>
             </div>
+   <div className="w-full py-6 text-center font-mono text-xs text-gray-500 flex flex-col items-center gap-1">
+  <p>&copy; {new Date().getFullYear()} Sanjay Sankar. All rights reserved.</p>
+  <div className="flex items-center gap-2 text-gray-400 text-[11px] bg-gray-100 dark:bg-gray-900 px-2 py-0.5 rounded border border-gray-200 dark:border-gray-800">
+    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+    <span>v1.0.0</span>
+    <span>•</span>
+    <span>branch: urmom</span>
+    <span>•</span>
+    <span>status: deployed</span>
+  </div>
+</div>
           </motion.main>
+          
         )}
       </AnimatePresence>
 
