@@ -522,7 +522,7 @@ export default function Home() {
                 <p className="text-lg text-gray-600 dark:text-gray-400">
                   connect with me on{" "}
                   <a
-                    href="https://www.linkedin.com/in/aditya-patil-260a631b2/"
+                    href="https://www.linkedin.com/in/sankarsanjay/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
@@ -531,10 +531,10 @@ export default function Home() {
                   </a>{" "}
                   or shoot an email to{" "}
                   <a
-                    href="mailto:aditya@example.com"
+                    href="mailto:sanjaysankar2030@gmail.com"
                     className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
                   >
-                    aditya@example.com
+                    sanjaysankar2030@gmail.com
                   </a>
                 </p>
 
