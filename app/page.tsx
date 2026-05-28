@@ -153,7 +153,6 @@ export default function Home() {
             {/* FIX: Profile image + intro — stacks vertically on mobile, side-by-side on md+ */}
             <div id="intro" className="w-full flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-10 mb-12 mb-16 scroll-mt-28">
 
-              {/* Profile Image — FIX: removed non-standard w-120, use proper responsive sizing */}
               <div className="relative h-40 w-40 sm:h-52 sm:w-52 md:h-64 md:w-64 overflow-hidden flex-shrink-0 rounded-4xl">
                 <Image
                   src="/178389178.jfif"
@@ -162,7 +161,6 @@ export default function Home() {
                   className="object-contain "
                   priority
                 />
-                {/* <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-background via-background/60 to-transparent backdrop-blur-[1px]" /> */}
               </div>
 
               {/* Typography Content */}
@@ -192,7 +190,6 @@ export default function Home() {
 
                 {/* Phonetic & Time — FIX: wraps gracefully on mobile */}
                 <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3 text-sm sm:text-base font-semibold text-foreground/80 sm:text-lg">
-                  {/* <span className="text-foreground/40">•</span> */}
                   <div className="flex items-center gap-1.5">
                     <span className="text-foreground/40">•</span>
                     <span>Based In TamilNadu , India</span>
@@ -200,7 +197,6 @@ export default function Home() {
                     <span className="tabular-nums">{time || "00:00:00"}</span>
                     <span className="text-xs uppercase tracking-widest">IST</span>
                   </div>
-                  {/* <span className="text-foreground/40">•</span> */}
                   <span>/சஞ்சய் சங்கர்/</span>
                 </div>
               </div>
@@ -268,95 +264,11 @@ export default function Home() {
               <TechStack />
             </div>
 
-            {/* Experience Section
-            <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Experience
-              </h2>
-              <div className="space-y-12">
-                <ExperienceItem
-                  title="Resonate (YC W26)"
-                  role="Software Engineer, San Francisco, CA"
-                  collapsible={true}
-                  link="https://www.ycombinator.com/companies/resonate"
-                >
-                  <div className="space-y-2">
-                    <p>As an early software engineer bridging product strategy and technical execution, I am driving the development of an AI-native messaging platform from zero to one.</p>
-                    <p>Key focus areas include:</p>
-                    <ul className="list-disc list-inside space-y-1 pl-2">
-                      <li>Architecting and building core product features for an AI-focused messaging ecosystem.</li>
-                      <li>Developing real-time systems and innovating ways to transform and present information dynamically within messaging interfaces.</li>
-                      <li>Collaborating within a lean team to build robust tools for AI-driven communication.</li>
-                      <li>Operating top-to-bottom, from product conception to complete software development.</li>
-                    </ul>
-                    <p>Transitioning into this founding-level role has been an incredibly rewarding next step following my previous startup ventures.</p>
-                  </div>
-                </ExperienceItem>
-
-                <ExperienceItem
-                  title="Entrepreneur First"
-                  role="Founder in Residence, Bengaluru"
-                  collapsible={true}
-                  link="https://www.joinef.com/"
-                >
-                  <div className="space-y-2">
-                    <p>As a Founder in Residence at Entrepreneurs First (EF), a premier global talent investor and startup accelerator, I was immersed in designing and developing cutting-edge Agentic AI systems.</p>
-                    <p>Built autonomous, goal-driven AI agents that shifted from suggestion-based tools to proactive execution, enabling seamless human-AI collaboration and redefining task automation and decision-making.</p>
-                    <p>Drove a bold vision for the future of computing: making traditional web browsing obsolete, turning personal data into the primary interface, and empowering agentic systems to independently handle complex responsibilities.</p>
-                    <p>Operated in a high-intensity environment surrounded by world-class cofounders, mentors, and resources, using EF's structured support to explore, validate, and iterate on ideas at pace.</p>
-                    <p>Positioned at the forefront of a paradigm shift in AI, tackling hard technical and conceptual challenges to create meaningful, scalable impact in the emerging agentic era.</p>
-                  </div>
-                </ExperienceItem>
-
-                <ExperienceItem
-                  title="Google Summer of Code 2025"
-                  role="Emory University School of Medicine, Atlanta, USA"
-                  collapsible={true}
-                  link="https://minimalistbook.com/gsoc-final-report-2025/"
-                >
-                  <div className="space-y-2">
-                    <p>Designed and developed a comprehensive system for managing Access Control List (ACL) permissions across multiple Linux file system servers, including NFS and BeeGFS, demonstrating expertise in large-scale distributed systems and secure file management.</p>
-                    <p>Built a robust backend capable of processing millions of permission change requests, showcasing proficiency in high-performance computing and scalability.</p>
-                    <p>Implemented two Linux systemd daemons communicating via Unix sockets: one for gRPC-based backend interactions and another for executing ACL changes, highlighting skills in daemon development, inter-process communication, and system-level programming.</p>
-                    <p>Created a user-friendly Next.js frontend enabling secure login, backend communication, and scheduling of permission requests, illustrating full-stack development capabilities and focus on intuitive user experiences.</p>
-                  </div>
-                </ExperienceItem>
-
-                <ExperienceItem
-                  title="Professional Freelancer (Technical GTM)"
-                  role="Technical Writer, Tel Aviv, Israel"
-                  collapsible={true}
-                  link="https://www.upwork.com/freelancers/~0172a072394ece49bb?viewMode=1"
-                >
-                  <div className="space-y-2">
-                    <p>Authored comprehensive, highly technical documentation (50+ pages) for a Software Composition Analysis (SCA) tool, including detailed guides on advanced features such as reachability analysis - focusing on identifying truly exploitable vulnerabilities in open-source dependencies to reduce noise and prioritize remediation in secure software development lifecycles.</p>
-                    <p>Ghostwrote in-depth content on Reachability Analysis for the CTO of a security company, explaining how it enhances SCA by determining whether detected vulnerabilities are actually reachable and exploitable in the application's codebase - delivering clear, authoritative thought leadership material suitable for blogs, whitepapers, or technical marketing.</p>
-                    <p>Deployed and configured Flipt (an open-source, Git-native feature flagging platform) on cloud infrastructure to support video production workflows for a feature flagging provider; troubleshot and resolved operational issues to ensure reliable, production-ready performance in a dynamic environment.</p>
-                    <p>Developed custom scraping tools for a proxy provider targeting real estate platforms, enabling efficient data extraction while adhering to technical and ethical constraints; rapidly produced high-quality articles and technical write-ups on the tools, scraping methodologies, and platform integrations to support knowledge sharing and client deliverables.</p>
-                  </div>
-                </ExperienceItem>
-
-                <ExperienceItem
-                  title="Engineering Intern"
-                  role="Athena Consulting Ltd. Dubai"
-                  collapsible={true}
-                >
-                  <div className="space-y-2">
-                    <p>Led the complete system design and deployment architecture for Eumlet, a UAE-based B2B Web3 payments and financial platform (built on Next.js), on AWS infrastructure. Configured Debian EC2 instances, Application Load Balancer (ALB), and NGINX reverse proxy under senior guidance - ensuring high availability, scalability, and secure handling of financial transactions in a regulated environment.</p>
-                    <p>Engineered automated CI/CD pipelines using GitHub Actions for seamless build, test, and deployment workflows, with direct integration and manual orchestration to EC2 targets - demonstrating strong expertise in modern DevOps practices, infrastructure as code principles, and zero-downtime deployments for production fintech applications.</p>
-                    <p>Managed a team of 4 developers while simultaneously supporting two high-value clients: Lunarspace and Concordium (a privacy-focused Layer-1 blockchain platform) - balancing tight deadlines, client expectations, and resource constraints in a fast-paced environment. Authored comprehensive legal and technical developer handbooks to standardize onboarding, compliance, and best practices for new recruits.</p>
-                    <p>Collaborated remotely with BGTrade (China-based financial platform team) on global security audits and production deployments of sensitive financial systems - coordinating across time zones and cultures to identify vulnerabilities, implement hardening measures, and ensure secure, compliant rollouts in cross-border fintech ecosystems.</p>
-                  </div>
-                </ExperienceItem>
-              </div>
-            </div> */}
             {/* Projects Spotlight Section */}
             <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
+            <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
 
               <div className="mb-16 w-full text-left">
-                {/* <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-    Projects Spotlight
-    </h2> */}
                 <ExperienceItem
 
                   title="Projects Spotlight"
@@ -373,14 +285,14 @@ export default function Home() {
                       <a href="https://sanjaysankar.framer.website/product/java-bpe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
 
-    <hr />
+                    <hr />
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Go-ML Framework</h3>
                       <p className="text-sm text-gray-400 dark:text-gray-500">Golang</p>
                       <p className="text-gray-600 dark:text-gray-400">Systems-level ML framework ported from C-based nn.h architecture to Go — built to understand model internals from the ground up.</p>
                       <a href="https://sanjaysankar.framer.website/product/go-ml" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-    <hr />
+                    <hr />
 
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Smart Clinic Management System</h3>
@@ -388,7 +300,7 @@ export default function Home() {
                       <p className="text-gray-600 dark:text-gray-400">Full-stack web app handling medical appointments, patient records, and staff scheduling for clinic operations.</p>
                       <a href="https://sanjaysankar.framer.website/product/healthcare" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-    <hr />
+                    <hr />
 
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Retail-Core: Microservices API Suite</h3>
@@ -396,7 +308,7 @@ export default function Home() {
                       <p className="text-gray-600 dark:text-gray-400">RESTful backend suite covering inventory tracking, order processing, and transactional data management at scale.</p>
                       <a href="https://sanjaysankar.framer.website/product/retail-api" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-    <hr />
+                    <hr />
 
                     <div className="space-y-1">
                       <h3 className="text-gray-900 dark:text-gray-100 font-medium">Pet Care Scheduler</h3>
@@ -404,7 +316,7 @@ export default function Home() {
                       <p className="text-gray-600 dark:text-gray-400">Modular console app for managing pet services, built as a deep-dive into advanced Core Java design patterns.</p>
                       <a href="https://sanjaysankar.framer.website/product/hugo-vicario" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
                     </div>
-    <hr />
+                    <hr />
 
                   </div>
                 </ExperienceItem>
@@ -412,10 +324,12 @@ export default function Home() {
               {/* </div> */}
               {/* Experience Section */}
               {/* <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28"> */}
+                          <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+
               <h2 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
                 Experience
               </h2>
-<div className="mt-8 space-y-12">
+              <div className="mt-8 space-y-12">
                 {/* Internship 1: Infotact */}
                 <div className="group relative">
                   <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-baseline">
@@ -438,7 +352,7 @@ export default function Home() {
                     </ul>
                   </div>
                 </div>
-<hr />                {/* Internship 2: Cognifiz */}
+                <hr />                {/* Internship 2: Cognifiz */}
                 <div className="group relative">
                   <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-baseline">
                     <h3 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
@@ -464,145 +378,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* In Between These Experiences SectionV
-            <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                In Between These Experiences
-              </h2>
-              <div className="rounded-xl border border-gray-200 dark:border-gray-800 p-4 sm:p-6 md:p-8">
-                <ExperienceItem
-                  title="The Product Building Journey"
-                  role=""
-                  collapsible={true}
-                >
-                  <div className="space-y-4">
-                    <p>I've been building and experimenting on the product side for a long time. Each previous product always feels naive in hindsight, but looking back, I can see they were incrementally better, each iteration teaching me something new about users, infrastructure, and what it takes to build something people actually want.</p>
-                    <p>It started with <span className="font-medium">MetaWiper</span> during my sophomore year, a tool that cleaned image metadata. No one would use it, but I was proud. It was my first real attempt at shipping something complete.</p>
-                    <p>Next came <span className="font-medium">Stockic</span>, a news app where I spent months doing serious infrastructure work. This was where I learned to build systems that could scale, not just features that looked good.</p>
-                    <p>Then I worked on <span className="font-medium">Gloss Card</span>, and for the first time, a customer actually wanted to buy it for their product. That validation, knowing someone saw enough value to pay, was a turning point.</p>
-                    <p>After that, I built <span className="font-medium">NeuraLeap</span>, where I had the most meaningful user interactions yet, HRs from established firms. I worked on data pipelines capable of handling 50 million LinkedIn profiles and processing them with AI. The scale was different, the stakes were higher, and the technical challenges forced me to level up.</p>
-                    <p>Most recently, I worked on <span className="font-medium">Meteor</span>, an AI SEO toolkit at Entrepreneurs First. This time, my product was being used by 6 YC-backed companies. Real users. Real traction. Real feedback loops.</p>
-                    <p className="font-medium text-black dark:text-white">So yes, hard work and consistency pay off. Each product was a step forward, even when it didn't feel like it at the time.</p>
-                  </div>
-                </ExperienceItem>
-              </div>
-            </div> */}
-
-            {/* Education Section
-            <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Education
-              </h2>
-              <div className="space-y-12">
-                <ExperienceItem
-                  title="National Institute of Technology Hamirpur"
-                  role="Electrical Engineering"
-                >
-                  <p>2022 - Surviving</p>
-                </ExperienceItem>
-              </div>
-            </div> */}
-
-            {/* Contributions Section
-            <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                GitHub Contributions
-              </h2>
-              <GithubGraph />
-            </div> */}
-
-            {/* Tech Stack Section
-            <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Tech Stack
-              </h2>
-              <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-                i&apos;m a generalist at heart who can build with anything, but here&apos;s the core stack i&apos;ve spent the most time with:
-              </p>
-              <TechStack />
-            </div> */}
-
-            {/* Research Publications Section
-            <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Research Publications
-              </h2>
-              <div className="space-y-12">
-                <ExperienceItem
-                  title="Cross-Compatible Encryption Adapter for Securing Legacy Modbus Devices"
-                  role=""
-                  collapsible={true}
-                  collapsedHeight="max-h-40"
-                >
-                  <div className="space-y-4">
-                    <div className="space-y-1">
-                      <p className="text-sm text-gray-400 dark:text-gray-500 font-medium">
-                        2025 17th International Conference on COMmunication Systems and NETworks (COMSNETS)
-                      </p>
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-4">
-                        <p className="text-gray-600 dark:text-gray-400">Authors: Aditya Patil; T. S. Sreeram</p>
-                        <a
-                          href="https://doi.org/10.1109/COMSNETS63942.2025.10885597"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
-                        >
-                          View Publication
-                        </a>
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <p className="text-xs uppercase tracking-wider text-gray-400 dark:text-gray-500 font-bold">Abstract</p>
-                      <p className="text-gray-600 dark:text-gray-400">Supervisory Control and Data Acquisition systems are the backbone of managing critical infrastructure in modern industrial control systems, spanning sectors from power generation to logistics. However, these systems face significant challenges due to threats from malicious actors. The Modbus protocol, despite its known lack of security features, is still used in many industries managing critical infrastructure due to the high cost of replacing existing systems. As a result, these legacy systems remain vulnerable to potentially damaging threats. This paper proposes an adapter device for enhancing the security of the Modbus protocol without replacing devices in legacy systems. The proposed adapter is cost-efficient, provides cross-platform support, and is easy to install, update, and maintain.</p>
-                    </div>
-                  </div>
-                </ExperienceItem>
-              </div>
-            </div> */}
-            {/* Projects Spotlight Section
-            <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Projects Spotlight
-              </h2>
-              <div className="space-y-8">
-
-                <div className="space-y-1">
-                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Java BPE LLM Tokenization Engine</h3>
-                  <p className="text-sm text-gray-400 dark:text-gray-500">Core Java</p>
-                  <p className="text-gray-600 dark:text-gray-400">Dependency-free Java library implementing Byte Pair Encoding and WordPiece tokenization algorithms used in modern LLMs.</p>
-                  <a href="https://sanjaysankar.framer.website/product/java-bpe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Go-ML Framework</h3>
-                  <p className="text-sm text-gray-400 dark:text-gray-500">Golang</p>
-                  <p className="text-gray-600 dark:text-gray-400">Systems-level ML framework ported from C-based nn.h architecture to Go — built to understand model internals from the ground up.</p>
-                  <a href="https://sanjaysankar.framer.website/product/go-ml" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Smart Clinic Management System</h3>
-                  <p className="text-sm text-gray-400 dark:text-gray-500">Spring (Java)</p>
-                  <p className="text-gray-600 dark:text-gray-400">Full-stack web app handling medical appointments, patient records, and staff scheduling for clinic operations.</p>
-                  <a href="https://sanjaysankar.framer.website/product/healthcare" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Retail-Core: Microservices API Suite</h3>
-                  <p className="text-sm text-gray-400 dark:text-gray-500">Spring (Java)</p>
-                  <p className="text-gray-600 dark:text-gray-400">RESTful backend suite covering inventory tracking, order processing, and transactional data management at scale.</p>
-                  <a href="https://sanjaysankar.framer.website/product/retail-api" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Pet Care Scheduler</h3>
-                  <p className="text-sm text-gray-400 dark:text-gray-500">Core Java</p>
-                  <p className="text-gray-600 dark:text-gray-400">Modular console app for managing pet services, built as a deep-dive into advanced Core Java design patterns.</p>
-                  <a href="https://sanjaysankar.framer.website/product/hugo-vicario" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
-                </div>
-
-              </div>
-            </div> */}
+           
             {/* Projects Spotlight Section */}
 
             <div className="mb-16 w-full text-left">
@@ -657,22 +433,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Thing about me Section */}
-            {/* <div className="mb-16 w-full text-left">
-              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Thing about me
-              </h2>
-              <div className="space-y-6">
-                <p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                  beyond engineering and build systems, i find balance in the tactile and the thoughtful. whether it&apos;s exploring the nuances of complex architectures or spending time in the real world, my approach to life is driven by curiosity and a desire to understand how things work at their core.
-                </p>
-                <p className="w-full text-lg leading-relaxed text-gray-600 dark:text-gray-400">
-                  i believe that the best products are built by people who have a diverse range of interests. it&apos;s the unique combination of technical depth and human perspective that allows us to create technology that actually resonates.
-                </p>
-              </div>
-            </div> */}
-            {/* Thing about me Section */}
-            {/* Things about me Section */}
             <div className="mb-12 w-full text-left">
               <div id="contact" className="mb-16 w-full text-left scroll-mt-28">
 
@@ -707,8 +467,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Get in Touch Section */}
-              {/* <div id="contact" className="mb-16 w-full text-left scroll-mt-28"> */}
+            
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400">
                 Get in Touch
               </h2>

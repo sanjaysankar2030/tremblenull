@@ -1,0 +1,10 @@
+{
+  "typescript.tsserver.maxTsServerMemory": 512,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "extensions.autoUpdate": false,
+  "search.followSymlinks": false,
+  "files.watcherExclude": {
+    "**/.next/**": true,
+    "**/node_modules/**": true
+  }
+}
