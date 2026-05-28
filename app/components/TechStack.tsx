@@ -68,13 +68,27 @@ export function TechStack() {
             <div className="flex justify-end">
                 <button
                     onClick={() => setIsExpanded(!isExpanded)}
-                    className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 hover:text-black dark:hover:text-white transition-all duration-300"
+                    className={`
+            group relative flex items-center gap-2 px-4 py-1.5 rounded-full
+            text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300
+            ${!isExpanded
+                            ? "text-white dark:text-black bg-black dark:bg-white scale-105"
+                            : "text-gray-400 hover:text-black dark:hover:text-white"
+                        }
+        `}
                 >
-                    {isExpanded ? "Show Less" : "View Full Stack"}
-                    {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+                    {/* The Text */}
+                    <span className="relative z-10 flex items-center gap-2">
+                        {isExpanded ? "Show Less" : "View Full Stack"}
+                        {isExpanded ? <ChevronUp size={12} /> : <ChevronDown size={12} className="animate-bounce" />}
+                    </span>
+
+                    {/* Thick Pulsing Ring - Only when collapsed */}
+                    {!isExpanded && (
+                        <span className="absolute inset-0 rounded-full border-[2.5px] border-black dark:border-white animate-thick-pulse pointer-events-none" />
+                    )}
                 </button>
             </div>
-
             <AnimatePresence mode="wait">
                 {!isExpanded ? (
                     <motion.div

@@ -3,7 +3,7 @@
 @variant dark (&:where(.dark, .dark *));
 :root {
   /* Crisp, matted light gray paper base */
-  --background: #f4f4f2; 
+  --background: #f0f0f0; 
   /* Slate graphite ink for excellent readability without harsh contrast */
   --foreground: #242526; 
 }
@@ -65,4 +65,46 @@ body {
 ::selection {
   background-color: #bfecac;
   color: #000;
+}
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.02); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes thick-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0);
+  }
+}
+
+/* Dark mode version of the pulse */
+.dark .animate-thick-pulse {
+  animation: thick-pulse-dark 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes thick-pulse-dark {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0);
+  }
+}
+
+.animate-thick-pulse {
+  animation: thick-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }

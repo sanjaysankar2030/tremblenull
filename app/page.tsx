@@ -52,7 +52,7 @@ export default function Home() {
   const [command, setCommand] = useState("javac");
 
   useEffect(() => {
-    const commands = ["javac", "tcc", "python3", "go run"];
+    const commands = ["javac", "tcc", "python3", "go run", "mvn spring-boot:run", 'mysql -u root -p', "make run"];
     let currentIndex = 0;
 
     const interval = setInterval(() => {
@@ -200,7 +200,7 @@ export default function Home() {
                     <span className="tabular-nums">{time || "00:00:00"}</span>
                     <span className="text-xs uppercase tracking-widest">IST</span>
                   </div>
-                  <span className="text-foreground/40">•</span>
+                  {/* <span className="text-foreground/40">•</span> */}
                   <span>/சஞ்சய் சங்கர்/</span>
                 </div>
               </div>
@@ -213,10 +213,10 @@ export default function Home() {
               </h2>
               <div className="space-y-12">
                 <ExperienceItem
-                  title="National Institute of Technology Hamirpur"
-                  role="Electrical Engineering"
+                  title="Velalar College of Engineering and Technology , Erode "
+                  role="AI & Data Science Engineering"
                 >
-                  <p>2022 - Surviving</p>
+                  <p>2022 - Present</p>
                 </ExperienceItem>
               </div>
             </div>
@@ -231,17 +231,44 @@ export default function Home() {
 
             {/* About Section */}
             <div id="about" className="w-full space-y-4 text-left text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:text-lg md:text-xl scroll-mt-28">
+              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                About me
+              </h2>
               <p>
-                a full-stack developer and <a href="https://en.wikipedia.org/wiki/Product_design" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">product builder</a> with deep experience across engineering, product strategy, and user-centric design.
+                a backend & ML engineer who builds{" "}
+                <a href="https://en.wikipedia.org/wiki/Scalability" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">
+                  scalable systems
+                </a>{" "}
+                and trains models that actually ship — not just notebooks that sit on a drive.
               </p>
               <p>
-                a <a href="https://en.wikipedia.org/wiki/Polymath" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">polymath</a> who bridges technical architecture with business outcomes to create impactful, scalable solutions.
+                currently crafting a{" "}
+                <a href="https://go.dev" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">
+                  lightweight ML library in Go
+                </a>
+                , because understanding something deeply means building it from scratch.
+              </p>
+              <p>
+                open to{" "}
+                <a href="#contact" className="underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">
+                  internships and campus placements
+                </a>
+                . if you're building something ambitious, let's talk.
               </p>
             </div>
+            <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
+            {/* Tech Stack Section */}
+            <div className="mb-16 w-full text-left">
+              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                Tech Stack
+              </h2>
+              <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
+                i&apos;m a generalist at heart who can build with anything, but here&apos;s the core stack i&apos;ve spent the most time with:
+              </p>
+              <TechStack />
+            </div>
 
-
-
-            {/* Experience Section */}
+            {/* Experience Section
             <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Experience
@@ -322,9 +349,122 @@ export default function Home() {
                   </div>
                 </ExperienceItem>
               </div>
+            </div> */}
+            {/* Projects Spotlight Section */}
+            <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28">
+
+              <div className="mb-16 w-full text-left">
+                {/* <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+    Projects Spotlight
+    </h2> */}
+                <ExperienceItem
+
+                  title="Projects Spotlight"
+                  role="Software Development"
+                  collapsible={true}
+                  collapsedHeight="max-h-80" // Increased height so the first few are visible
+                >
+                  <div className="space-y-8 mt-4">
+
+                    <div className="space-y-1">
+                      <h3 className="text-gray-900 dark:text-gray-100 font-medium">Java BPE LLM Tokenization Engine</h3>
+                      <p className="text-sm text-gray-400 dark:text-gray-500">Core Java</p>
+                      <p className="text-gray-600 dark:text-gray-400">Dependency-free Java library implementing Byte Pair Encoding and WordPiece tokenization algorithms used in modern LLMs.</p>
+                      <a href="https://sanjaysankar.framer.website/product/java-bpe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                    </div>
+
+    <hr />
+                    <div className="space-y-1">
+                      <h3 className="text-gray-900 dark:text-gray-100 font-medium">Go-ML Framework</h3>
+                      <p className="text-sm text-gray-400 dark:text-gray-500">Golang</p>
+                      <p className="text-gray-600 dark:text-gray-400">Systems-level ML framework ported from C-based nn.h architecture to Go — built to understand model internals from the ground up.</p>
+                      <a href="https://sanjaysankar.framer.website/product/go-ml" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                    </div>
+    <hr />
+
+                    <div className="space-y-1">
+                      <h3 className="text-gray-900 dark:text-gray-100 font-medium">Smart Clinic Management System</h3>
+                      <p className="text-sm text-gray-400 dark:text-gray-500">Spring (Java)</p>
+                      <p className="text-gray-600 dark:text-gray-400">Full-stack web app handling medical appointments, patient records, and staff scheduling for clinic operations.</p>
+                      <a href="https://sanjaysankar.framer.website/product/healthcare" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                    </div>
+    <hr />
+
+                    <div className="space-y-1">
+                      <h3 className="text-gray-900 dark:text-gray-100 font-medium">Retail-Core: Microservices API Suite</h3>
+                      <p className="text-sm text-gray-400 dark:text-gray-500">Spring (Java)</p>
+                      <p className="text-gray-600 dark:text-gray-400">RESTful backend suite covering inventory tracking, order processing, and transactional data management at scale.</p>
+                      <a href="https://sanjaysankar.framer.website/product/retail-api" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                    </div>
+    <hr />
+
+                    <div className="space-y-1">
+                      <h3 className="text-gray-900 dark:text-gray-100 font-medium">Pet Care Scheduler</h3>
+                      <p className="text-sm text-gray-400 dark:text-gray-500">Core Java</p>
+                      <p className="text-gray-600 dark:text-gray-400">Modular console app for managing pet services, built as a deep-dive into advanced Core Java design patterns.</p>
+                      <a href="https://sanjaysankar.framer.website/product/hugo-vicario" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                    </div>
+    <hr />
+
+                  </div>
+                </ExperienceItem>
+              </div>
+              {/* </div> */}
+              {/* Experience Section */}
+              {/* <div id="experience" className="mt-16 mb-16 w-full text-left scroll-mt-28"> */}
+              <h2 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
+                Experience
+              </h2>
+<div className="mt-8 space-y-12">
+                {/* Internship 1: Infotact */}
+                <div className="group relative">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-baseline">
+                    <h3 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
+                      Infotact Software Solutions
+                    </h3>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Full Stack Java Intern
+                    </p>
+                  </div>
+                  <div className="mt-4 space-y-3 text-gray-600 dark:text-gray-400">
+                    <p>
+                      Architected and maintained enterprise-level applications using the Spring Boot ecosystem,
+                      focusing on scalable backend logic and seamless frontend integration.
+                    </p>
+                    <ul className="list-disc list-inside space-y-1.5 pl-2 text-sm leading-relaxed">
+                      <li>Designed and documented RESTful APIs using Swagger/OpenAPI, ensuring high discoverability and clear documentation.</li>
+                      <li>Streamlined development by implementing Lombok for boilerplate reduction and utilized Postman for automated API testing.</li>
+                      <li>Optimized data persistence layers and managed relational schemas to support high-concurrency operations.</li>
+                    </ul>
+                  </div>
+                </div>
+<hr />                {/* Internship 2: Cognifiz */}
+                <div className="group relative">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:justify-between sm:items-baseline">
+                    <h3 className="text-gray-900 dark:text-gray-100 font-medium text-lg">
+                      Cognifiz Solutions
+                    </h3>
+                    <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                      Machine Learning Intern
+                    </p>
+                  </div>
+                  <div className="mt-4 space-y-3 text-gray-600 dark:text-gray-400">
+                    <p>
+                      Developed and deployed predictive models, focusing on the end-to-end machine learning lifecycle
+                      from data preprocessing to model evaluation.
+                    </p>
+                    <ul className="list-disc list-inside space-y-1.5 pl-2 text-sm leading-relaxed">
+                      <li>Conducted exploratory data analysis (EDA) on large datasets to extract actionable insights and key features.</li>
+                      <li>Implemented and fine-tuned supervised and unsupervised learning algorithms to solve specific business challenges.</li>
+                      <li>Collaborated on integrating ML models into existing software architectures for efficient real-time inference.</li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
             </div>
 
-            {/* In Between These Experiences Section */}
+            {/* In Between These Experiences SectionV
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 In Between These Experiences
@@ -346,7 +486,7 @@ export default function Home() {
                   </div>
                 </ExperienceItem>
               </div>
-            </div>
+            </div> */}
 
             {/* Education Section
             <div className="mb-16 w-full text-left">
@@ -371,7 +511,7 @@ export default function Home() {
               <GithubGraph />
             </div> */}
 
-            {/* Tech Stack Section */}
+            {/* Tech Stack Section
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Tech Stack
@@ -380,9 +520,9 @@ export default function Home() {
                 i&apos;m a generalist at heart who can build with anything, but here&apos;s the core stack i&apos;ve spent the most time with:
               </p>
               <TechStack />
-            </div>
+            </div> */}
 
-            {/* Research Publications Section */}
+            {/* Research Publications Section
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Research Publications
@@ -418,39 +558,86 @@ export default function Home() {
                   </div>
                 </ExperienceItem>
               </div>
-            </div>
-
-            {/* Videos Section */}
+            </div> */}
+            {/* Projects Spotlight Section
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                Explainer Videos
+                Projects Spotlight
+              </h2>
+              <div className="space-y-8">
+
+                <div className="space-y-1">
+                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Java BPE LLM Tokenization Engine</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">Core Java</p>
+                  <p className="text-gray-600 dark:text-gray-400">Dependency-free Java library implementing Byte Pair Encoding and WordPiece tokenization algorithms used in modern LLMs.</p>
+                  <a href="https://sanjaysankar.framer.website/product/java-bpe" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Go-ML Framework</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">Golang</p>
+                  <p className="text-gray-600 dark:text-gray-400">Systems-level ML framework ported from C-based nn.h architecture to Go — built to understand model internals from the ground up.</p>
+                  <a href="https://sanjaysankar.framer.website/product/go-ml" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Smart Clinic Management System</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">Spring (Java)</p>
+                  <p className="text-gray-600 dark:text-gray-400">Full-stack web app handling medical appointments, patient records, and staff scheduling for clinic operations.</p>
+                  <a href="https://sanjaysankar.framer.website/product/healthcare" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Retail-Core: Microservices API Suite</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">Spring (Java)</p>
+                  <p className="text-gray-600 dark:text-gray-400">RESTful backend suite covering inventory tracking, order processing, and transactional data management at scale.</p>
+                  <a href="https://sanjaysankar.framer.website/product/retail-api" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                </div>
+
+                <div className="space-y-1">
+                  <h3 className="text-gray-900 dark:text-gray-100 font-medium">Pet Care Scheduler</h3>
+                  <p className="text-sm text-gray-400 dark:text-gray-500">Core Java</p>
+                  <p className="text-gray-600 dark:text-gray-400">Modular console app for managing pet services, built as a deep-dive into advanced Core Java design patterns.</p>
+                  <a href="https://sanjaysankar.framer.website/product/hugo-vicario" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-medium text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300">View Details</a>
+                </div>
+
+              </div>
+            </div> */}
+            {/* Projects Spotlight Section */}
+
+            <div className="mb-16 w-full text-left">
+              <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                Documentation
               </h2>
               <div className="space-y-3 text-lg text-gray-600 dark:text-gray-400">
                 <p>
-                  here is how i explain complex systems on my{" "}
+                  {/* Added mr-3 for a clean gap */}
+                  <span className="text-foreground/40 mr-3">•</span>
+                  View my professional experience and technical background in my{" "}
                   <a
-                    href="https://www.youtube.com/@theracecondition"
+                    href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
                   >
-                    youtube channel
+                    updated resume
                   </a>
                 </p>
                 <p>
-                  watch me build{" "}
+                  {/* Added mr-3 for a clean gap */}
+                  <span className="text-foreground/40 mr-3">•</span>
+                  Interested in my architectural approach? check out my{" "}
                   <a
-                    href="https://www.youtube.com/watch?v=m84tBP_4DWE"
+                    href="https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-black dark:text-white underline underline-offset-4 hover:text-gray-600 dark:hover:text-gray-300"
                   >
-                    spotify system design
+                    system design breakdowns
                   </a>
                 </p>
               </div>
             </div>
-
             {/* Writings & Blogs Section */}
             <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
@@ -471,7 +658,7 @@ export default function Home() {
             </div>
 
             {/* Thing about me Section */}
-            <div className="mb-16 w-full text-left">
+            {/* <div className="mb-16 w-full text-left">
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
                 Thing about me
               </h2>
@@ -483,10 +670,45 @@ export default function Home() {
                   i believe that the best products are built by people who have a diverse range of interests. it&apos;s the unique combination of technical depth and human perspective that allows us to create technology that actually resonates.
                 </p>
               </div>
-            </div>
+            </div> */}
+            {/* Thing about me Section */}
+            {/* Things about me Section */}
+            <div className="mb-12 w-full text-left">
+              <div id="contact" className="mb-16 w-full text-left scroll-mt-28">
 
-            {/* Get in Touch Section */}
-            <div id="contact" className="mb-16 w-full text-left scroll-mt-28">
+                <h2 className="mb-5 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                  Things about me
+                </h2>
+                <div className="space-y-5">
+                  <p className="w-full text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                    I focus on the intersection of technical rigor and thoughtful architecture. My work is driven by a need to understand systems at a fundamental level—a philosophy shaped by the creators who set the industry’s technical standards.
+                  </p>
+
+                  <div className="space-y-3 w-full text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                    <p>
+                      I value the low-level exploration and "build-from-scratch" mindset of {' '}
+                      <a href="https://www.twitch.tv/tsoding" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white underline underline-offset-4 hover:opacity-70">Tsoding</a>.
+                    </p>
+
+                    <p>
+                      I strive for the utility and minimalism found in {' '}
+                      <a href="https://nothings.org/" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white underline underline-offset-4 hover:opacity-70">Sean Barrett&apos;s</a> work—solving complex problems with elegant, single-header simplicity.
+                    </p>
+
+                    <p>
+                      I’m inspired by the sheer technical range of {' '}
+                      <a href="https://www.bellard.org/" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white underline underline-offset-4 hover:opacity-70">Fabrice Bellard</a>, whose innovations across compilers and emulators remain my benchmark for growth.
+                    </p>
+                  </div>
+
+                  <p className="w-full text-base leading-relaxed text-gray-600 dark:text-gray-400 italic">
+                    I believe the best tools are built by those who bridge technical depth with human perspective.
+                  </p>
+                </div>
+              </div>
+
+              {/* Get in Touch Section */}
+              {/* <div id="contact" className="mb-16 w-full text-left scroll-mt-28"> */}
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400">
                 Get in Touch
               </h2>
