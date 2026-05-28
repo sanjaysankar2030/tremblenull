@@ -8,50 +8,46 @@ const categories = [
     {
         name: "Languages",
         skills: [
+            { name: "Java", slug: "openjdk" },
             { name: "Go", slug: "go" },
+            { name: "C", slug: "c" },
             { name: "Python", slug: "python" },
-            { name: "TypeScript", slug: "typescript" },
             { name: "JavaScript", slug: "javascript" },
-            { name: "C++", slug: "cplusplus" },
-        ]
-    },
-    {
-        name: "Frontend",
-        skills: [
-            { name: "React", slug: "react" },
-            { name: "Next.js", slug: "nextdotjs" },
-            { name: "Tailwind CSS", slug: "tailwindcss" },
-            { name: "Shadcn UI", slug: "shadcnui" },
-            { name: "Framer Motion", slug: "framer" },
         ]
     },
     {
         name: "Backend & DB",
         skills: [
-            { name: "FastAPI", slug: "fastapi" },
-            { name: "Node.js", slug: "nodedotjs" },
-            { name: "PostgreSQL", slug: "postgresql" },
+            { name: "Spring Boot", slug: "springboot" },
+            { name: "Spring Web ", slug: "spring" },
+            { name: "Spring Security", slug: "springsecurity" },
+            { name: "Thymeleaf", slug: "thymeleaf" },
+        ]
+    },
+    {
+        name: "DataBases",
+        skills: [
+            { name: "MySQL", slug: "mysql" },
             { name: "MongoDB", slug: "mongodb" },
-            { name: "Redis", slug: "redis" },
-            { name: "FireBase", slug: "firebase" },
+            { name: "SQLite", slug: "sqlite" },
+            { name: "Hibernate", slug: "hibernate" },
         ]
     },
     {
         name: "Infra & Tools",
         skills: [
             { name: "Docker", slug: "docker" },
-            { name: "Google Cloud", slug: "googlecloud" },
-            { name: "Vercel", slug: "vercel" },
+            { name: "Amazon Web Services", slug: "nextcloud" },
+            { name: "Swagger", slug: "swagger" },
+            { name: "Postman", slug: "postman" },
+            { name: "CloudFlare pages", slug: "cloudflare" },
             { name: "Git", slug: "git" },
-            { name: "GitHub", slug: "github" },
-            { name: "Linux", slug: "linux" },
-            { name: "Nginx", slug: "nginx" },
         ]
     },
     {
         name: "AI & ML",
         skills: [
-            { name: "Hugging Face", slug: "huggingface" },
+            { name: "Tensor flow", slug: "tensorflow" },
             { name: "PyTorch", slug: "pytorch" },
             { name: "Pandas", slug: "pandas" },
         ]

@@ -54,7 +54,7 @@ export default function Home() {
   const [command, setCommand] = useState("javac");
 
   useEffect(() => {
-    const commands = ["javac", "tcc", "python3", "go run", "mvn spring-boot:run", 'mysql -u root -p', "make run"];
+    const commands = ["javac", "tcc -run", "python3", "go run", "mvn spring-boot:run", 'mysql -u root -p', "make run"];
     let currentIndex = 0;
 
     const interval = setInterval(() => {
