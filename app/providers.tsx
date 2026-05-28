@@ -1,9 +1,12 @@
 "use client";
 
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProvider as NextThemesProvider, type ThemeProviderProps } from "next-themes";
 import { useEffect, useState } from "react";
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
+export function ThemeProvider({
+    children,
+    ...props
+}: ThemeProviderProps) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -15,7 +18,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>
+        <NextThemesProvider {...props}>
             {children}
         </NextThemesProvider>
     );
