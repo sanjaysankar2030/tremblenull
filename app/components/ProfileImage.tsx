@@ -16,7 +16,7 @@ export default function ProfileImage() {
       <button
         onClick={() => setIsOpen(true)}
         onContextMenu={handleContextMenu}
-        title="Click to view"
+        title="Zoom In"
         className="relative h-40 w-40 sm:h-52 sm:w-52 md:h-64 md:w-64 overflow-hidden flex-shrink-0 rounded-4xl cursor-zoom-in group select-none outline-none"
       >
         <Image
@@ -48,7 +48,7 @@ export default function ProfileImage() {
           >
             <Image
               src="/178389178.png"
-              alt="Profile Expanded"
+              alt="Profile Picture Expanded"
               fill
               className="object-contain pointer-events-none select-none"
               priority

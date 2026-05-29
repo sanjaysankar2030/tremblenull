@@ -53,7 +53,7 @@ export default function Home() {
   const markdownContent = getMarkdownContent(time);
   const [command, setCommand] = useState("javac");
 
-  useEffect(() => { 
+  useEffect(() => {
     const commands = ["javac", "tcc -run", "python3", "go run", "mvn spring-boot:run", 'mysql -u root -p', "make run"];
     let currentIndex = 0;
 
@@ -180,8 +180,7 @@ export default function Home() {
                     </AnimatePresence>
                   </span>
 
-                  <h1 className="text-3xl font-bold tracking-normal sm:text-4xl md:text-5xl font-mono text-foreground leading-tight text-center md:text-left w-full">
-                    Sanjay Sankar
+                  <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl font-sans text-slate-800 dark:text-zinc-100 leading-tight text-center md:text-left w-full">  Sanjay Sankar
                   </h1>
                 </div>
 
@@ -195,6 +194,15 @@ export default function Home() {
                     <span className="text-xs uppercase tracking-widest">IST</span>
                   </div>
                   <span>/சஞ்சய் சங்கர்/</span>
+                  <div className="flex items-center gap-2.5 rounded-full border border-emerald-500/10 bg-emerald-500/5 px-3 py-1 text-xs font-medium text-emerald-600 dark:border-emerald-400/10 dark:bg-emerald-400/5 dark:text-emerald-400 select-none">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    </span>
+                    <span>Open to New Opportunities</span>
+                    <span className="text-emerald-300 dark:text-emerald-700/60">•</span>
+                    <span className="font-mono text-[15px] tracking-wider uppercase opacity-80">backend_development</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -211,6 +219,7 @@ export default function Home() {
                 >
                   <p>2022 - Present</p>
                 </ExperienceItem>
+
               </div>
             </div>
 
@@ -256,7 +265,7 @@ export default function Home() {
                 Tech Stack
               </h2>
               <p className="mb-8 text-lg text-gray-600 dark:text-gray-400">
-                i&apos;m a generalist at heart who can build with anything, but here&apos;s the core stack i&apos;ve spent the most time with:
+                i&apos;m a generalist at heart who likes to experiment with programs , but here&apos;s the core stack i&apos;ve spent the most my time with .
               </p>
               <TechStack />
             </div>
@@ -333,7 +342,7 @@ export default function Home() {
                       <p className="mt-0.5 text-xs text-gray-500">IBM <span className="mx-1">·</span> Mar 2026</p>
                       <p className="mt-1 text-xs text-gray-400 dark:text-gray-600">Cloud Native, Microservices, Containers, DevOps, and Agile</p>
                     </div>
-                    <a href="https://www.credly.com/badges/f41d93af-bae9-4a17-830d-496e4972472c/linked_in_profile" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">verify</a>
+                    <a href="https://www.credly.com/badges/f41d93af-bae9-4a17-830d-496e4972472c/linked_in_profile" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Link to Credential</a>
                   </div>
                   <div className="flex items-start justify-between gap-4 py-4 border-b border-gray-100 dark:border-gray-800">
                     <div className="flex-1 min-w-0">
@@ -341,7 +350,7 @@ export default function Home() {
                       <p className="mt-0.5 text-xs text-gray-500">Amazon Web Services (AWS) <span className="mx-1">·</span> Mar 2026 <span className="mx-1">·</span> ID: QMWWTGJGKC9B</p>
                       <p className="mt-1 text-xs text-gray-400 dark:text-gray-600">Foundational cloud computing and AWS services</p>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/records/QMWWTGJGKC9B" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">verify</a>
+                    <a href="https://www.coursera.org/account/accomplishments/records/QMWWTGJGKC9B" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Link to Credential</a>
                   </div>
                   <div className="flex items-start justify-between gap-4 py-4">
                     <div className="flex-1 min-w-0">
@@ -349,7 +358,7 @@ export default function Home() {
                       <p className="mt-0.5 text-xs text-gray-500">UC Irvine <span className="mx-1">·</span> ID: O070J3MJK7Q6</p>
                       <p className="mt-1 text-xs text-gray-400 dark:text-gray-600">Go Specialization</p>
                     </div>
-                    <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/O070J3MJK7Q6" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">verify</a>
+                    <a href="https://www.coursera.org/account/accomplishments/specialization/certificate/O070J3MJK7Q6" target="_blank" rel="noopener noreferrer" className="shrink-0 mt-0.5 text-xs text-gray-400 dark:text-gray-600 underline underline-offset-4 hover:text-black dark:hover:text-white transition-colors">Link to Credential</a>
                   </div>
                 </div>
               </div>
@@ -473,40 +482,36 @@ export default function Home() {
               </p>
             </div> */}
 
-            <div className="mb-12 w-full text-left">
-              <div id="contact" className="mb-16 w-full text-left scroll-mt-28">
+            {/* <div className="mb-12 w-full text-left"> */}
+            <div id="contact" className="w-full text-left scroll-mt-28">
+              <h2 className="mb-4 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
+                Philosophy & Influences
+              </h2>
 
-                <h2 className="mb-5 text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500">
-                  Things about me
-                </h2>
-                <div className="space-y-5">
-                  <p className="w-full text-base leading-relaxed text-gray-600 dark:text-gray-400">
-                    I focus on the intersection of technical rigor and thoughtful architecture. My work is driven by a need to understand systems at a fundamental level—a philosophy shaped by the creators who set the industry’s technical standards.
+              <div className="max-w-2xl space-y-6 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                <div className="border-l-2 border-gray-300 dark:border-gray-700 pl-4 my-6">
+                  <p className="italic text-gray-500 dark:text-gray-400">
+                    "Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And to make things worse: complexity sells better."
                   </p>
-
-                  <div className="space-y-3 w-full text-base leading-relaxed text-gray-600 dark:text-gray-400">
-                    <p>
-                      I value the low-level exploration and "build-from-scratch" mindset of {' '}
-                      <a href="https://www.twitch.tv/tsoding" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white underline underline-offset-4 hover:opacity-70">Tsoding</a>.
-                    </p>
-
-                    <p>
-                      I strive for the utility and minimalism found in {' '}
-                      <a href="https://nothings.org/" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white underline underline-offset-4 hover:opacity-70">Sean Barrett&apos;s</a> work—solving complex problems with elegant, single-header simplicity.
-                    </p>
-
-                    <p>
-                      I’m inspired by the sheer technical range of {' '}
-                      <a href="https://www.bellard.org/" target="_blank" rel="noopener noreferrer" className="text-black dark:text-white underline underline-offset-4 hover:opacity-70">Fabrice Bellard</a>, whose innovations across compilers and emulators remain my benchmark for growth.
-                    </p>
-                  </div>
-
-                  <p className="w-full text-base leading-relaxed text-gray-600 dark:text-gray-400 italic">
-                    I believe the best tools are built by those who bridge technical depth with human perspective.
-                  </p>
+                  <span className="block mt-2 text-xs font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                    — Edsger W. Dijkstra
+                  </span>
                 </div>
-              </div>
+                <p>
+                  I focus on the intersection of technical rigor and thoughtful architecture, driven by a need to understand systems at a fundamental level. My approach to engineering is deeply shaped by creators who prioritize building from the ground up and setting high technical standards.
+                </p>
 
+                <p>
+                  I highly value the low-level exploration of{' '}
+                  <a href="https://www.twitch.tv/tsoding" target="_blank" rel="noopener noreferrer" className="font-medium text-black dark:text-white underline underline-offset-4 hover:opacity-70">Tsoding</a>,
+                  the minimalist, single-header utility of{' '}
+                  <a href="https://nothings.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-black dark:text-white underline underline-offset-4 hover:opacity-70">Sean Barrett</a>,
+                  and the exceptional technical breadth of{' '}
+                  <a href="https://www.bellard.org/" target="_blank" rel="noopener noreferrer" className="font-medium text-black dark:text-white underline underline-offset-4 hover:opacity-70">Fabrice Bellard</a>.
+                </p>
+
+              </div>
+            </div>            <div className="mb-12 w-full text-left">
               <hr className="w-full border-t border-gray-200 dark:border-gray-800 my-8" />
 
               <h2 className="mb-6 text-xs font-bold uppercase tracking-widest text-gray-400">
@@ -571,7 +576,7 @@ export default function Home() {
                     className="hover:text-black dark:hover:text-white transition-colors hover:scale-110"
                     title="Resume"
                   >
-                    <CgFileDocument  className="h-5 w-5" />
+                    <CgFileDocument className="h-5 w-5" />
                   </a>
                   {/* <button
                     onClick={() => setShowQR(true)}
@@ -580,7 +585,7 @@ export default function Home() {
                   >
                     <QrCode className="h-5 w-5" />
                   </button> */}
-                   <a
+                  <a
                     href="https://leetcode.com/u/Sanjay___/"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -615,19 +620,19 @@ export default function Home() {
                 </div>
               </div>
             </div>
-   <div className="w-full py-6 text-center font-mono text-xs text-gray-500 flex flex-col items-center gap-1">
-  <p>&copy; {new Date().getFullYear()} Sanjay Sankar. All rights reserved.</p>
-  <div className="flex items-center gap-2 text-gray-400 text-[11px] bg-gray-100 dark:bg-gray-900 px-2 py-0.5 rounded border border-gray-200 dark:border-gray-800">
-    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-    <span>v1.0.0</span>
-    <span>•</span>
-    <span>branch: urmom</span>
-    <span>•</span>
-    <span>status: deployed</span>
-  </div>
-</div>
+            <div className="w-full py-6 text-center font-mono text-xs text-gray-500 flex flex-col items-center gap-1">
+              <p>&copy; {new Date().getFullYear()} Sanjay Sankar. All rights reserved.</p>
+              <div className="flex items-center gap-2 text-gray-400 text-[11px] bg-gray-100 dark:bg-gray-900 px-2 py-0.5 rounded border border-gray-200 dark:border-gray-800">
+                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                <span>v1.0.0</span>
+                <span>•</span>
+                <span>branch: urmom</span>
+                <span>•</span>
+                <span>status: deployed</span>
+              </div>
+            </div>
           </motion.main>
-          
+
         )}
       </AnimatePresence>
 

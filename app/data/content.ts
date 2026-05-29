@@ -75,7 +75,7 @@ A backend and machine learning engineer focused on the intersection of technical
 
 ## Contact
 - **Email:** sanjaysankar2030@gmail.com
-- **LinkedIn:** [Connect via LinkedIn]
+- **LinkedIn:** linkedin.com/in/sankarsanjay
 - **Architectural Breakdowns:** [Check System Design Breakdowns]
-- **Resume:** [View Professional Resume]
+- **Resume:** https://drive.google.com/file/d/1oqjKdbVtGpeqLFkaaNdL05044bJcgRJ5/view
 `;
