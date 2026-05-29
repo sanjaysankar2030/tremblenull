@@ -1,0 +1,32 @@
+@sanjaysankar2030 ➜ /workspaces/portfolio (main) $ npm run build
+
+> dev-portfolio@0.1.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 14.1s
+✓ Finished TypeScript in 5.3s    
+✓ Collecting page data using 1 worker in 396.0ms    
+✓ Generating static pages using 1 worker (6/6) in 237.3ms
+✓ Finalizing page optimization in 601.1ms    
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /robots.txt
+└ ○ /sitemap.xml
+
+
+○  (Static)  prerendered as static content
+
+@sanjaysankar2030 ➜ /workspaces/portfolio (main) $ npx wrangler pages deploy out --commit-dirty=true
+
+ ⛅️ wrangler 4.95.0
+───────────────────
+✨ Success! Uploaded 41 files (2.05 sec)
+
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://70413d56.tremblenull.pages.dev
+@sanjaysankar2030 ➜ /workspaces/portfolio (main) $ 
