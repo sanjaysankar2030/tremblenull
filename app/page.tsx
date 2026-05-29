@@ -13,7 +13,7 @@ import { useTheme } from "next-themes";
 import { QRCodeSVG } from "qrcode.react";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
-import ProfileImage from './components/ProfileImage.tsx'; // Adjust path depending on your alias config
+import ProfileImage from './components/ProfileImage'; // Adjust path depending on your alias config
 
 import { getMarkdownContent } from "./data/content";
 

@@ -11,4 +11,5 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+// Cast as any to appease TypeScript for Cloudflare's custom runtime key
+export default nextConfig as any;
