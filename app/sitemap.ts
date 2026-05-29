@@ -1,7 +1,9 @@
+export const dynamic = "force-static"; // <--- ADD THIS LINE
+
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://www.justaditya.com'
+    const baseUrl = 'https://tremblenull.pages.dev'
 
     return [
         {
